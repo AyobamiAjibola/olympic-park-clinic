@@ -158,13 +158,13 @@ export default function HomePage() {
     if (currentTime >= closingTime) {
       return {
         isOpen: false,
-        message: "Currently Closed",
+        message: `${closingTimeText}`,
       };
     }
 
     return {
       isOpen: true,
-      message: `Open Today Until ${closingTimeText}`,
+      message: `${closingTimeText}`,
     };
   };
 
@@ -193,7 +193,7 @@ export default function HomePage() {
             </h1>
 
             <h2 className="mt-2 text-2xl font-black leading-tight sm:text-3xl lg:text-4xl">
-              {storeStatus.message}
+              Open Today Until {storeStatus.message}
               <br className="hidden sm:block" />
               <span className="sm:hidden"> </span>
               Family Doctors Available

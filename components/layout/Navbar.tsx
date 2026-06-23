@@ -24,14 +24,43 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
-type IProps = {
-  isOpen: boolean
-}
-
-const Navbar = ({isOpen}: IProps) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+
+  const getStoreStatus = () => {
+    const now = new Date();
+    const day = now.getDay();
+
+    let closingHour = 19;
+    let closingTimeText = "7:00 PM";
+
+    if (day === 0) {
+      closingHour = 14;
+      closingTimeText = "2:00 PM";
+    } else if (day === 6) {
+      closingHour = 16;
+      closingTimeText = "4:00 PM";
+    }
+
+    const currentTime = now.getHours() * 60 + now.getMinutes();
+    const closingTime = closingHour * 60;
+
+    if (currentTime >= closingTime) {
+      return {
+        isOpen: false,
+        message: "Currently Closed",
+      };
+    }
+
+    return {
+      isOpen: true,
+      message: `Open Today Until ${closingTimeText}`,
+    };
+  };
+
+  const storeStatus = getStoreStatus();
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
@@ -254,8 +283,8 @@ const Navbar = ({isOpen}: IProps) => {
       >
         <div className="flex items-center justify-start gap-4">
           <span className="relative flex size-6 items-center justify-center ml-2 md:ml-0">
-            <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${isOpen ? 'bg-green-400' : 'bg-red-400'} opacity-75`} />
-            <span className={`relative inline-flex size-5 rounded-full ${isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
+            <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${storeStatus.isOpen ? 'bg-green-400' : 'bg-red-400'} opacity-75`} />
+            <span className={`relative inline-flex size-5 rounded-full ${storeStatus.isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
           </span>
 
           <div className="flex flex-col items-start justify-start">
@@ -263,7 +292,7 @@ const Navbar = ({isOpen}: IProps) => {
               Walk-in Live Status
             </p>
             <span className="text-3xl font-black leading-tight text-white md:text-3xl">
-              {isOpen ? 'OPEN NOW' : 'CLOSED'}
+              {storeStatus.isOpen ? 'OPEN NOW' : 'CLOSED'}
             </span>
           </div>
         </div>
