@@ -108,13 +108,19 @@ export default function FamilyDoctor() {
   return (
     <main className="bg-white">
       <section className="relative overflow-hidden bg-[#f3f7fc] px-4 py-20 sm:px-6 lg:px-12">
-        <div className="mx-auto max-w-7xl items-center gap-14">
+        <motion.div 
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.08 }}
+          viewport={{ once: true, amount: 0.08 }}
+          className="mx-auto max-w-7xl items-center gap-14"
+        >
           <div className="flex justify-center items-center flex-col">
             <span className="inline-flex rounded-full bg-main/10 px-4 py-2 text-sm font-bold uppercase tracking-wider text-main">
               Accepting New Patients
             </span>
 
-            <h1 className="mt-6 max-w-3xl text-center text-4xl font-black leading-tight text-neutral-950 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-6 max-w-3xl text-center text-4xl font-black leading-16 text-neutral-950 sm:text-5xl lg:text-6xl">
               Family Doctors in Calgary Accepting{" "}
               <span className="text-main">New Patients Now</span>
             </h1>
@@ -147,7 +153,7 @@ export default function FamilyDoctor() {
               </a>
             </div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
       <section className="bg-[#f8fbff] px-4 py-20 sm:px-6 lg:px-12">

@@ -4,8 +4,8 @@ import Image from "next/image"
 import clinicImage from "@/public/clinic-hero.png";
 import { 
   CalendarDays, MapPin, 
-  Phone, ShieldCheck, 
-  Users, Stethoscope,
+  Phone, 
+  Users,
   Check,
   UserPlus,
   PersonStanding,
@@ -20,8 +20,9 @@ import {
   Clock,
   PhoneCall,
   ArrowUpRight,
+  Search,
 } from "lucide-react";
-import { clinicAddress, directionsUrl, doctors, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
+import { directionsUrl, doctors, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
 import { ServicesSection } from "@/components/layout/ServicesSection";
 import Link from "next/link";
 import logo from "@/public/logo.png";
@@ -30,6 +31,7 @@ import { Navigation as SwiperNavigation } from "swiper/modules";
 import { motion } from "motion/react";
 import "swiper/css";
 import "swiper/css/navigation";
+import { Button } from "@/components/ui/button";
 
 type DataType = {
   title: React.ReactNode;
@@ -40,18 +42,18 @@ type DataType = {
 const data = [
   {
     title: <span className="font-semibold">Open 7 Days</span>,
-    icon: <CalendarDays className="text-main" size={30}/>,
-    subTitle: <span className="font-black/60 leading-relaxed">Including Weekends</span>
+    icon: <CalendarDays className="text-main" size={20}/>,
+    subTitle: <span className="text-neutral-500 leading-4 text-sm">Including Weekends</span>
   },
   {
     title: <span className="font-semibold">Real Doctors</span>,
-    icon: <Users className="text-main" size={30}/>,
-    subTitle: <span className="font-black/60 leading-relaxed">Experienced family <br/>physician</span>
+    icon: <Users className="text-main" size={20}/>,
+    subTitle: <span className="text-neutral-500 leading-4 text-sm">Experienced family <br/>physician</span>
   },
   {
-    title: <span className="font-semibold">No Appointment <br/> Needed</span>,
-    icon: <ShieldCheck className="text-main" size={30}/>,
-    subTitle: <span className="font-black/60 leading-relaxed">Walk in anytime</span>
+    title: <span className="font-semibold leading-4">Direct Billing</span>,
+    icon: <CreditCard className="text-main" size={20}/>,
+    subTitle: <span className="text-neutral-500 leading-6 text-sm">Most insurance plans</span>
   }
 ];
 
@@ -82,29 +84,6 @@ const patientCards = [
     description:
       "No Alberta health card? No problem. We offer self-pay options for your convenience.",
     icon: CreditCard,
-  },
-];
-
-const cards = [
-  {
-    title: "Walk-in Clinic",
-    text: "Short wait times",
-    icon: Stethoscope,
-  },
-  {
-    title: "Family Care",
-    text: "All ages welcome",
-    icon: Users,
-  },
-  {
-    title: "Direct Billing",
-    text: "Most insurance plans",
-    icon: ShieldCheck,
-  },
-  {
-    title: "Convenient Location",
-    text: "Easy access & parking",
-    icon: MapPin,
   },
 ];
 
@@ -172,7 +151,17 @@ export default function HomePage() {
 
   return (
     <main>
-      <section className="pb-6 px-4 lg:px-12 flex flex-col justify-center items-center bg-main-lightest">
+      <section
+        className="
+          h-screen pb-6 px-4 lg:px-12 flex 
+          justify-center items-center 
+          bg-main-lightest flex-col
+          bg-[url('/bg.png')]
+          bg-cover
+          bg-center
+          bg-no-repeat
+          "
+    >
         <div className="flex justify-start items-start md:pt-12 pt-6">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
@@ -181,30 +170,32 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.08 }} 
             className="flex flex-col justify-start items-start md:w-[60%] w-full"
           >
-            <span className="mb-2 text-sm font-semibold leading-relaxed text-main sm:text-base md:text-lg">
-              PRIMARA OLYMPIC PARK MEDICAL CLINIC
+            <span className="mb-2 text-sm font-semibold leading-relaxed sm:text-base md:text-sm">
+              PRIMARA OLYMPIC PARK CLINIC
             </span>
 
-            <h1 className="text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
-              Walk-in Clinic Calgary
+            <h1 className="text-4xl font-black leading-16 text-main sm:text-5xl lg:text-6xl">
+              Family Medicine
               <br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>
-              Near You
+              & Walk-in Clinic
             </h1>
 
-            <h2 className="mt-2 text-2xl font-black leading-tight sm:text-3xl lg:text-4xl">
-              Open Today Until {storeStatus.message}
-              <br className="hidden sm:block" />
-              <span className="sm:hidden"> </span>
-              Family Doctors Available
-            </h2>
-            <div className="mt-8 flex w-full flex-col gap-6 pr-0 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between md:pr-12">
+            {/* <span className="relative inline-block font-script text-6xl text-[#2F66D8] leading-none">
+              Near You
+            </span> */}
+
+            <span className="my-4 font-light text-neutral-600">
+              Compassionate care for every stage of life. 
+              <br/> No appointment required. Walk in anytime.
+            </span>
+
+            <div className="flex w-auto gap-4 pr-0 sm:flex-wrap sm:items-center sm:justify-between md:pr-12">
               {data.map((d: DataType, key: number) => (
                 <div
                   key={key}
-                  className="flex w-full items-center gap-3 sm:w-auto"
+                  className="flex h-18 items-center gap-3 sm:w-auto p-2 shadow-md rounded-xl bg-white"
                 >
-                  <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-blue-100 p-2">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 p-2">
                     {d.icon}
                   </div>
 
@@ -215,20 +206,24 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-
-            <span className="text-lg md:text-2xl font-medium mt-10 md:w-[80%] w-full">
-              Skip the hospital wait. See a real doctor today, fast, friendly care for you and your family.
-            </span>
-            <a
+            <div className="shadow-sm mt-6 flex gap-2 justify-start items-center bg-main/10 rounded-xl py-2 px-4">
+              <HeartPulse className="h-12 w-12 text-main"/>
+              <span className="text-base text-black/60 leading-5">
+                Our experienced and friendly doctors are always ready to deliver <br/>
+                <span className="font-semibold text-main">patient-centred, evidence-based care</span> 
+                {" "} to you and your family
+              </span>
+            </div>
+            {/* <a
               href={directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold mt-4 underline" 
             >
               {clinicAddress}
-            </a>
+            </a> */}
 
-            <div className="flex md:flex-row flex-col gap-2 justify-start items-center mt-4">
+            {/* <div className="flex md:flex-row flex-col gap-2 justify-start items-center mt-4">
               <a
                 href={directionsUrl}
                 target="_blank"
@@ -245,15 +240,13 @@ export default function HomePage() {
                 <Phone size={20} />
                 Call: {OfficeNumber}
               </a>
-
-             
-            </div>
+            </div> */}
           </motion.div>
 
           <div className="relative w-[40%]">
-            <div className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-main/10" />
+            {/* <div className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-main/10" /> */}
 
-            <div className="relative overflow-hidden rounded-4xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
+            <div className="relative overflow-hidden rounded-2xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
               <div className="aspect-4/3 overflow-hidden rounded-3xl bg-main/10">
                 <Image
                   src={clinicImage}
@@ -262,11 +255,42 @@ export default function HomePage() {
                   priority
                 />
               </div>
+              <div className="bg-main rounded-2xl w-full flex items-center justify-between py-4 px-5">
+                <div className="flex items-center justify-start gap-4">
+                  <span className="relative flex size-6 items-center justify-center ml-2 md:ml-0">
+                    <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${storeStatus.isOpen ? 'bg-green-400' : 'bg-red-400'} opacity-75`} />
+                    <span className={`relative inline-flex size-5 rounded-full ${storeStatus.isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
+                  </span>
+
+                  <div className="flex flex-col items-start justify-start">
+                    <span className={`text-3xl font-black leading-6 md:text-3xl ${storeStatus.isOpen ? 'text-green-500' : 'text-red-600'}`}>
+                      {storeStatus.isOpen ? 'OPEN NOW' : 'CLOSED'}
+                    </span>
+                    {storeStatus.isOpen && <p className="text-sm leading-relaxed text-white">
+                      Until {storeStatus.message} Today
+                    </p>}
+                  </div>
+                </div>
+
+                <div className="hidden h-[80%] w-px bg-white/20 backdrop-blur lg:block" >.</div>
+
+                <div className="flex items-start justify-start gap-1">
+                  <MapPin className="shrink-0 text-white h-10 w-10 md:h-10 md:w-10" />
+                  <div>
+                    <Button className="bg-white text-main cursor-pointer rounded-lg text-lg font-medium">
+                      <Search />
+                      Direction
+                    </Button>
+                    <p className="text-left text-l leading-tight text-white md:text-base">
+                      Get here easily
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        <div className="mt-12 w-full mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        {/* <div className="mt-8 w-full mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) => {
             const Icon = card.icon;
 
@@ -288,8 +312,9 @@ export default function HomePage() {
               </div>
             );
           })}
-        </div>
+        </div> */}
       </section>
+      
 
       <section className="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-12 lg:py-14">
         <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
@@ -374,15 +399,18 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.08 }} 
             className="flex flex-col justify-start items-start"
           >
-            <h2 className="text-6xl font-bold leading-relaxed">Our <span className="text-main">Promise</span></h2>
+            <h2 className="text-6xl font-bold leading-relaxed">Our <span className="text-main">Mission</span></h2>
             <span className="text-xl leading-relaxed">
-              When you or your loved ones need care, waiting days for an appointment should not be the only option.
-              At Now Medical Clinic, our doctors are available 7 days a week, including weekends, 
-              to provide fast, compassionate, and professional medical care for Calgary residents. Whether you 
-              need help with a sudden illness, minor injury, prescription concern, or general health issue, our 
-              team is here to support you when it matters most.
-              No appointment is needed. Walk in and receive the care you need, when you need it.
-              Because your health matters now, not later.
+              At Primara Olympic Park Clinic, our mission is to provide compassionate, 
+              accessible, and patient-centered primary healthcare that empowers individuals 
+              and families to achieve lifelong wellness. We are committed to delivering 
+              high-quality, evidence-based medical care through prevention, early intervention, 
+              and comprehensive management of acute and chronic conditions. We strive to 
+              create a welcoming environment where every patient—including walk-ins, newcomers, 
+              IFHP recipients, and out-of-province visitors—is treated with dignity, respect, 
+              and excellence. Through collaboration, innovation, and community partnership, 
+              we aim to improve health outcomes, support healthier lifestyles, and build 
+              stronger, healthier communities.
             </span>
 
             <a
@@ -529,7 +557,7 @@ export default function HomePage() {
             </h2>
 
             <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-neutral-600">
-              Our diverse team of family doctors provides care in multiple languages.
+              Our diverse team of family doctors provides good care.
               Each doctor brings years of experience in family medicine, chronic
               condition management, and preventive health.
             </p>

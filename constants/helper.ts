@@ -17,8 +17,9 @@ export const doctors = [
     name: "Dr. Jacob Eze",
     role: "Family Doctor",
     status: "Accepting New Patients",
-    qualification: "(MD, MRCDP, LMCC, CCFP)",
+    qualification: "(MD, MRCGP, LMCC, CCFP)",
     image: "/images/doctors/female-doctor.jpg",
+    gender: "male"
   },
   {
     name: "Dr. Moses Nwofor",
@@ -26,33 +27,6 @@ export const doctors = [
     status: "Accepting New Patients",
     qualification: "(MBBS, MRCGP, LMCC)",
     image: "/images/doctors/dr-ebele.jpg",
-  },
-  {
-    name: "Dr. Jacob Eze",
-    role: "Family Doctor",
-    status: "Accepting New Patients",
-    qualification: "(MD, MRCDP, LMCC, CCFP)",
-    image: "/images/doctors/female-doctor.jpg",
-  },
-  {
-    name: "Dr. Moses Nwofor",
-    role: "Family Doctor",
-    status: "Accepting New Patients",
-    qualification: "(MBBS, MRCGP, LMCC)",
-    image: "/images/doctors/dr-ebele.jpg",
-  },
-  {
-    name: "Dr. Jacob Eze",
-    role: "Family Doctor",
-    status: "Accepting New Patients",
-    qualification: "(MD, MRCDP, LMCC, CCFP)",
-    image: "/images/doctors/female-doctor.jpg",
-  },
-  {
-    name: "Dr. Moses Nwofor",
-    role: "Family Doctor",
-    status: "Accepting New Patients",
-    qualification: "(MBBS, MRCGP, LMCC)",
-    image: "/images/doctors/dr-ebele.jpg",
-  },
+    gender: "male"
+  }
 ];

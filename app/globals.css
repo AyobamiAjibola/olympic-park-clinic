@@ -13,7 +13,8 @@
   --color-main: #205090;
   --color-main-light: #20A0D0;
   --color-main-lighter: #40B8E8;
-  --color-main-lightest: #f5f9ff
+  --color-main-lightest: #f5f9ff;
+  --font-script: var(--font-allura);
 }
 
 /* @media (prefers-color-scheme: dark) {

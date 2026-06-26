@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, ArrowUp, ChevronDown, Clock, MapPin, Menu, MessageCircleMore, Phone, Search, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Calendar, ChevronDown, Clock, MapPin, Menu, MessageCircleMore, Phone, Search, X } from "lucide-react";
 import { NavLink } from "@/components/common/NavLink";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -15,7 +15,7 @@ const links = [
   { 
     label: "Family Doctor", 
     children: [
-      { label: "Family Doctors Accepting New Patients", to: "/family-doctor" },
+      { label: "Family Doctors Accepting New Patients", to: "/family-doctor-accepting-new-patients" },
       { label: "Female Family Doctor", to: "/female-family-doctor" },
       { label: "Meet Our Doctors", to: "/meet-our-doctors" }
     ],
@@ -24,7 +24,11 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
-const Navbar = () => {
+type IProps = {
+  showWalkInStatus?: boolean;
+}
+
+const Navbar = ({showWalkInStatus = true}: IProps) => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
@@ -63,7 +67,7 @@ const Navbar = () => {
   const storeStatus = getStoreStatus();
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 w-full">
       <nav className="relative flex z-50 h-20 w-full items-center justify-between px-2 lg:px-6 border-b border-slate-200/80 bg-white/80 backdrop-blur">
         <NavLink
           href="/"
@@ -78,8 +82,8 @@ const Navbar = () => {
             <div className="flex items-start flex-col justify-start">
               <span
                 className="text-main font-bold md:text-xl text-lg"
-              >Primara Olympic Park</span>
-              <span className="md:text-sm text-xs">MEDICAL CLINIC</span>
+              >Primara</span>
+              <span className="md:text-sm text-xs">OLYMPIC PARK CLINIC</span>
             </div>
           </div>
         </NavLink>
@@ -157,9 +161,9 @@ const Navbar = () => {
 
         <div className="hidden md:block">
           <Button className="rounded-lg bg-main py-5 w-auto cursor-pointer">
-            <Phone color="white"/>
+            <Calendar color="white"/>
             <span className="text-white text-base">
-              Call {OfficeNumber}
+              Book Appointment
             </span>
           </Button>
         </div>
@@ -278,6 +282,7 @@ const Navbar = () => {
         </ul>
       </div>
 
+      {/* {showWalkInStatus && 
       <div 
         className="relative z-0 bg-main flex h-auto w-full flex-col gap-6 px-4 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between lg:h-28 lg:flex-nowrap lg:px-12"
       >
@@ -340,6 +345,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      } */}
       
     </header>
   );
