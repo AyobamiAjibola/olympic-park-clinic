@@ -17,7 +17,6 @@ import {
   Clock,
   PhoneCall,
   ArrowUpRight,
-  Search,
   Stethoscope,
 } from "lucide-react";
 import { directionsUrl, doctors, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
@@ -326,11 +325,11 @@ export default function HomePage() {
               <div className="hidden h-16 w-px bg-white/20 lg:block" />
 
               <div className="flex items-center justify-start gap-3 w-[40%]">
-                <MapPin className="h-8 w-8 shrink-0 text-white sm:h-10 sm:w-10" />
+                {/* <MapPin className="h-8 w-8 shrink-0 text-white sm:h-10 sm:w-10" /> */}
 
                 <div>
                   <Button className="cursor-pointer rounded-lg bg-white text-base font-medium text-main sm:text-lg">
-                    <Search />
+                    <MapPin />
                     Direction
                   </Button>
 
