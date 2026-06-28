@@ -288,7 +288,7 @@ export default function HomePage() {
               />
             </div>
 
-            <div className="flex w-full flex-col gap-2 rounded-2xl bg-main px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex w-full flex-col gap-4 rounded-2xl bg-main px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center justify-start gap-4 w-[60%]">
                 <span className="relative ml-2 flex size-6 items-center justify-center md:ml-0">
                   <span
