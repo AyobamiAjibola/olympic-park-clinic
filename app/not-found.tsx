@@ -9,7 +9,7 @@ import { Footer } from "@/components/layout/Footer";
 export default function NotFound() {
   return (
     <>
-      <Navbar showWalkInStatus={false} />
+      <Navbar />
       <div className="flex min-h-screen items-center justify-center bg-linear-to-b from-white to-main-lightest px-4">
         <div className="max-w-xl text-center">
           <motion.div
