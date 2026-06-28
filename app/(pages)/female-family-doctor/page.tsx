@@ -1,7 +1,7 @@
 'use client'
 
-import { directionsUrl, doctors, OfficeNumber } from "@/constants/helper";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { doctors } from "@/constants/helper";
+import { CalendarCheck, ChevronLeft, ChevronRight, Heart, Phone, ShieldCheck, Stethoscope, Users } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation as SwiperNavigation } from "swiper/modules";
 import { motion } from "motion/react";
@@ -9,67 +9,128 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import logo from "@/public/logo.png";
+import doctorImage from "@/public/f_doc.png";
+import doctorGroupImage from "@/public/group_doc.png";
+import DoctorCard from "@/components/layout/DoctorCard";
+
+function InfoItem({
+  icon,
+  title,
+  text,
+  noBorder,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+  noBorder?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-start gap-4 py-4 ${
+        noBorder ? "" : "border-b border-gray-200"
+      }`}
+    >
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-50">
+        {icon}
+      </div>
+
+      <div>
+        <h4 className="font-bold text-gray-900">{title}</h4>
+        <p className="text-sm text-gray-600">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+function Feature({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="text-center">
+      <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#E4EEF9] text-main">
+        {icon}
+      </div>
+
+      <h3 className="mb-2 font-bold text-main">{title}</h3>
+
+      <p className="text-sm leading-6 text-gray-600">{text}</p>
+    </div>
+  );
+}
 
 export default function page() {
   return (
     <main>
-        <section className="pb-6 px-4 lg:px-12 flex flex-col justify-center items-center bg-main-lightest">
-            <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
+        <section className="relative min-h-screen overflow-hidden bg-main-lightest px-6 lg:px-12">
+            <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
                 <div>
-                    <span className="text-main text-5xl font-black">
-                        Female Family Doctor
-                    </span>
+                    <div className="my-6 inline-flex items-center gap-3 rounded-full bg-white px-3 py-1 shadow-sm">
+                        <Users className="h-5 w-5 text-main" />
+                        <span className="font-semibold text-main text-xs">
+                            New Patients Welcome
+                        </span>
+                    </div>
 
-                    <h1 className="mt-2 text-5xl font-black leading-tight text-neutral-950">
-                        in Calgary Accepting
+                    <h1 className="max-w-2xl text-4xl font-black leading-tight text-black md:text-5xl">
+                        <span className="text-main">Female Family Doctor</span>
                         <br />
-                        New Patients Now
+                        in Calgary Accepting New Patients Now
                     </h1>
 
-                    <p className="mt-8 text-xl font-semibold text-neutral-800">
+                    <div className="mt-2 h-1 w-24 rounded-full bg-main" />
+
+                    <p className="mt-6 text-xl font-bold text-gray-700">
                         Looking for a compassionate, experienced female physician?
                     </p>
 
-                    <p className="mt-6 max-w-xl text-lg leading-8 text-neutral-600">
+                    <p className="mt-6 max-w-xl text-lg leading-8 text-gray-600">
                         Our female family doctors provide personalized care for women,
                         children and families with same day access and flexible hours.
                     </p>
 
-                    <p className="mt-6 text-lg font-semibold text-neutral-900">
-                        Comfort, understanding, and expert care from doctors who truly
-                        listen.
-                    </p>
+                    <div className="mt-5 flex max-w-xl items-start gap-5">
+                        <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-main">
+                            <Heart className="h-7 w-7 text-white" />
+                        </div>
 
-                    <div className="mt-10 flex flex-wrap gap-4">
-                        <a
-                            href="tel:5873918188"
-                            className="bg-main px-8 py-4 font-semibold text-white"
-                        >
-                            Call: {OfficeNumber}
-                        </a>
-
-                        <a
-                            href={directionsUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="border-2 border-main px-8 py-4 font-semibold text-main"
-                        >
-                            Walk In Today
-                        </a>
+                        <p className="text-xl leading-8 text-gray-600">
+                            <span className="font-bold text-gray-700">
+                                Comfort, understanding, and expert care
+                            </span>
+                            <br />
+                            from doctors who truly listen.
+                        </p>
                     </div>
                 </div>
 
-                <div className="flex justify-center">
-                    <div className="overflow-hidden rounded-4xl shadow-2xl">
-                        <video
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            className="h-162.5 object-cover"
-                        >
-                            <source src="/videos/female-doctor.mp4" />
-                        </video>
+                <div className="relative- h-full mt-6">
+                    <div className="relative overflow-hidden rounded-[4rem] bg-white shadow-2xl">
+                        <Image
+                            src={doctorImage}
+                            alt="Female family doctor in Calgary"
+                            className="h-120 w-full object-cover"
+                            priority
+                        />
+
+                        <div className="absolute bottom-4 right-10 w-72 rounded-2xl bg-white/95 p-5 shadow-xl backdrop-blur">
+                            <InfoItem
+                                icon={<Users className="h-5 w-5 text-main" />}
+                                title="Family Care"
+                                text="For all ages"
+                            />
+                            <InfoItem
+                                icon={<ShieldCheck className="h-5 w-5 text-main" />}
+                                title="Personalized Care"
+                                text="Your health, our priority"
+                                noBorder
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,128 +139,64 @@ export default function page() {
         <section className="bg-white px-4 py-20 lg:px-12">
             <div className="mx-auto max-w-7xl">
                 <div className="text-center">
-                <h2 className="text-5xl font-black">
-                    Meet Our{" "}
-                    <span className="text-main">
-                    Female Family Physician
-                    </span>
-                </h2>
+                    <h2 className="text-3xl md:text-5xl font-black">
+                        Meet Our{" "}
+                        <span className="text-main">
+                        Female Family Physician
+                        </span>
+                    </h2>
 
-                <p className="mx-auto mt-5 max-w-3xl text-lg text-neutral-600">
-                    Our female physicians provide comprehensive family medicine in a
-                    supportive and comfortable environment.
-                </p>
+                    <p className="mx-auto mt-5 max-w-3xl text-lg text-neutral-600">
+                        Our female physicians provide comprehensive family medicine in a
+                        supportive and comfortable environment.
+                    </p>
                 </div>
 
-                <div className="relative mt-14">
-                    <button className="doctor-prev absolute left-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-main/20 bg-white shadow-lg">
-                        <ChevronLeft className="text-main" />
-                    </button>
-
-                    <button className="doctor-next absolute right-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-main/20 bg-white shadow-lg">
-                        <ChevronRight className="text-main" />
-                    </button>
-
-                    <Swiper
-                        modules={[SwiperNavigation]}
-                        navigation={{
-                            prevEl: ".doctor-prev",
-                            nextEl: ".doctor-next",
-                        }}
-                        style={{ paddingBottom: '20px'}}
-                        spaceBetween={24}
-                        breakpoints={{
-                            0: {
-                                slidesPerView: 1,
-                            },
-                            640: {
-                                slidesPerView: 2,
-                            },
-                            1024: {
-                                slidesPerView: 3,
-                            },
-                        }}
-                        className="px-12"
-                    >
-                    {doctors.filter(d => d.gender === "female").map((doctor, index) => (
-                        <SwiperSlide key={doctor.name}>
-                            <motion.article 
-                                initial={{ opacity: 0, y: 24 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 0.45, delay: index * 0.08 }}
-                                viewport={{ once: true, amount: 0.3 }}
-                                className="overflow-hidden rounded-3xl bg-white border border-main/20 shadow-xl shadow-main/10 transition-all duration-300 hover:-translate-y-1">
-                                <div className="relative h-95">
-                                <Image
-                                    src={logo}
-                                    alt={doctor.name}
-                                    fill
-                                    className="object-cover"
-                                />
-                                </div>
-
-                                <div className="p-6">
-                                <p className="text-sm font-medium text-neutral-500">
-                                    {doctor.role}
-                                </p>
-
-                                <div>
-                                    <h3 className="mt-2 text-2xl font-bold text-neutral-950">
-                                    {doctor.name}
-                                    </h3>
-
-                                    <span className="text-neutral-500">
-                                    {doctor.qualification}
-                                    </span>
-                                </div>
-
-                                <p className="mt-4 font-medium text-main">
-                                    {doctor.status}
-                                </p>
-                                </div>
-                            </motion.article>
-                        </SwiperSlide>
-                    ))}
-                    </Swiper>
-                </div>
+                <DoctorCard doctors={doctors.filter(d => d.gender === "female")}/>
             </div>
         </section>
 
-        <section className="bg-[#f8fbff] px-4 py-20 lg:px-12">
-            <div className="mx-auto grid max-w-7xl items-center gap-16 lg:grid-cols-2">
-                <div className="relative">
-                    <div className="absolute -left-6 -top-6 h-full w-full bg-main/10" />
+        <section className="bg-[#F4F8FD] px-5 py-16 lg:px-20">
+            <div className="mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-2 justify-start">
+                <div className="relative overflow-hidden rounded-4xl bg-[#EAF3FC] shadow-sm">
+                    <div className="absolute left-8 top-10 h-[80%] w-[80%] rounded-full border-18 border-white/70" />
 
-                    <Image
-                        src={logo}//{waitingRoomImage}
-                        alt="Female doctors clinic"
-                        className="relative"
-                    />
+                    <div className="relative z-10">
+                        <Image
+                            src={doctorGroupImage}
+                            alt="Female doctor with patients"
+                            className="h-auto w-full object-contain"
+                            priority
+                        />
+                    </div>
                 </div>
 
                 <div>
-                    <h2 className="text-5xl font-black leading-tight">
-                        <span className="text-main">
-                            Your Health,
-                        </span>
-                        <br />
+                    <h2 className="text-4xl font-black text-[#111827] sm:text-5xl lg:text-6xl">
+                        <span className="text-main">Your Health,</span>
+                            <br />
                             Your Comfort,
-                        <br />
-                        Your Doctor
+                            <br />
+                            Your Doctor
                     </h2>
 
-                    <p className="mt-8 text-lg leading-8 text-neutral-600">
+                    <div className="mt-8 h-1 w-24 rounded-full bg-main" />
+
+                    <p className="mt-8 max-w-2xl text-lg leading-8 text-gray-600">
                         We understand that many women prefer discussing their health with a
                         female doctor. Our physicians are here to provide compassionate,
                         respectful, and personalized care.
                     </p>
 
-                    <a
-                        href="tel:5873918188"
-                        className="mt-8 inline-block bg-main px-8 py-4 font-semibold text-white"
-                    >
-                        Call: {OfficeNumber}
-                    </a>
+                    <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
+                        <a
+                            href="tel:5871234567"
+                            className="inline-flex items-center justify-center gap-3 rounded-xl bg-main px-8 py-5 text-lg font-bold text-white shadow-lg shadow-blue-900/20"
+                        >
+                            <Phone className="h-6 w-6" />
+                            Call: 587-123-4567
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>

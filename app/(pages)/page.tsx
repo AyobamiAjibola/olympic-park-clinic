@@ -12,26 +12,22 @@ import {
   BadgePlus,
   Globe2,
   CreditCard,
-  Languages,
   HeartPulse,
   ArrowRight,
-  ChevronRight,
-  ChevronLeft,
   Clock,
   PhoneCall,
   ArrowUpRight,
   Search,
+  Stethoscope,
 } from "lucide-react";
 import { directionsUrl, doctors, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
 import { ServicesSection } from "@/components/layout/ServicesSection";
 import Link from "next/link";
-import logo from "@/public/logo.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation as SwiperNavigation } from "swiper/modules";
 import { motion } from "motion/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Button } from "@/components/ui/button";
+import DoctorCard from "@/components/layout/DoctorCard";
 
 type DataType = {
   title: React.ReactNode;
@@ -100,12 +96,12 @@ const highlights = [
   {
     title: "Male & Female Doctors",
     description: "Choose a doctor you're comfortable with",
-    icon: Users,
+    icon: Stethoscope,
   },
   {
-    title: "Multiple Languages",
-    description: "English, Spanish, French, Arabic, Urdu, Hindi",
-    icon: Languages,
+    title: "Family Focused Care",
+    description: "Healthcare for children, adults, and seniors",
+    icon: Users,
   },
   {
     title: "Comprehensive Care",
@@ -116,44 +112,61 @@ const highlights = [
 
 export default function HomePage() {
 
-  const getStoreStatus = () => {
+  const getStoreStatus_ = () => {
     const now = new Date();
-    const day = now.getDay();
+    const day = now.getDay(); // 0 = Sunday, 6 = Saturday
 
-    let closingHour = 19;
-    let closingTimeText = "7:00 PM";
+    const hours = [
+      { open: 10, close: 14, openText: "10:00 AM", closeText: "2:00 PM" }, // Sunday
+      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Monday
+      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Tuesday
+      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Wednesday
+      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Thursday
+      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Friday
+      { open: 10, close: 16, openText: "10:00 AM", closeText: "4:00 PM" }, // Saturday
+    ];
 
-    if (day === 0) {
-      closingHour = 14;
-      closingTimeText = "2:00 PM";
-    } else if (day === 6) {
-      closingHour = 16;
-      closingTimeText = "4:00 PM";
-    }
+    const today = hours[day];
 
-    const currentTime = now.getHours() * 60 + now.getMinutes();
-    const closingTime = closingHour * 60;
+    const currentMinutes = now.getHours() * 60 + now.getMinutes();
+    const openingMinutes = today.open * 60;
+    const closingMinutes = today.close * 60;
 
-    if (currentTime >= closingTime) {
+    // Before opening today
+    if (currentMinutes < openingMinutes) {
       return {
         isOpen: false,
-        message: `${closingTimeText}`,
+        message: `Opens Today at ${today.openText}`,
       };
     }
 
+    // During business hours
+    if (currentMinutes < closingMinutes) {
+      return {
+        isOpen: true,
+        message: `Until ${today.closeText} Today`,
+      };
+    }
+
+
+    // Closed, find next opening day
+    const nextDay = (day + 1) % 7;
+    const next = hours[nextDay];
+
     return {
-      isOpen: true,
-      message: `${closingTimeText}`,
+      isOpen: false,
+      message: `Opens Tomorrow at ${next.openText}`,
     };
   };
 
-  const storeStatus = getStoreStatus();
-
+  const storeStatus = getStoreStatus_();
+  
+  console.log(getStoreStatus_(), 'status')
   return (
     <main>
       <section
         className="
-          h-screen pb-6 px-4 lg:px-12 flex 
+          lg:h-screen pb-6 px-4 lg:px-12 flex 
           justify-center items-center 
           bg-main-lightest flex-col
           bg-[url('/bg.png')]
@@ -162,7 +175,175 @@ export default function HomePage() {
           bg-no-repeat
           "
     >
-        <div className="flex justify-start items-start md:pt-12 pt-6">
+      <div className="flex flex-col items-start justify-start gap-10 lg:flex-row lg:items-start">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.08 }}
+          viewport={{ once: true, amount: 0.08 }}
+          className="flex w-full flex-col items-start justify-start lg:w-[60%]"
+        >
+          <span className="sm:mt-4 text-sm font-semibold leading-relaxed text-main sm:text-base">
+            PRIMARA OLYMPIC PARK CLINIC
+          </span>
+
+          <h1 className="text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
+            Family Medicine
+            <br className="hidden sm:block" />
+            & Walk-in Clinic
+          </h1>
+
+          <span className="my-4 text-base font-light leading-relaxed text-neutral-600 sm:text-lg">
+            Compassionate care for every stage of life.
+            <br className="hidden sm:block" />
+            No appointment required. Walk in anytime.
+          </span>
+
+          <div className="relative w-full lg:hidden block">
+            <div className="relative overflow-hidden rounded-2xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
+              <div className="aspect-4/3 overflow-hidden rounded-3xl bg-main/10">
+                <Image
+                  src={clinicImage}
+                  alt="Family doctors at Olympic Park Clinic"
+                  className="h-full w-full object-cover"
+                  priority
+                />
+              </div>
+
+              <div className="flex w-full flex-col gap-2 rounded-2xl bg-main p-1 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex items-center justify-start gap-4">
+                  <span className="relative ml-2 flex size-6 items-center justify-center md:ml-0">
+                    <span
+                      className={`absolute inline-flex h-full w-full animate-ping rounded-full ${
+                        storeStatus.isOpen ? "bg-green-400" : "bg-red-400"
+                      } opacity-75`}
+                    />
+                    <span
+                      className={`relative inline-flex size-5 rounded-full ${
+                        storeStatus.isOpen ? "bg-green-500" : "bg-red-400"
+                      }`}
+                    />
+                  </span>
+
+                  <div className="flex flex-col items-start justify-start">
+                    <p className="text-sm leading-relaxed text-white">
+                      Walk-in status
+                    </p>
+
+                    <span
+                      className={`text-2xl font-black leading-tight sm:text-3xl ${
+                        storeStatus.isOpen ? "text-green-500" : "text-red-400"
+                      }`}
+                    >
+                      {storeStatus.isOpen ? "OPEN NOW" : "CLOSED"}
+                    </span>
+
+                    <p className="text-xs font-semibold leading-relaxed text-white">
+                      {storeStatus.message}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:grid hidden w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 lg:pr-8">
+            {data.map((d: DataType, key: number) => (
+              <div
+                key={key}
+                className="flex min-h-20 items-center gap-3 rounded-xl bg-white p-4 shadow-md"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 p-2">
+                  {d.icon}
+                </div>
+
+                <div className="flex min-w-0 flex-col items-start justify-start">
+                  {d.title}
+                  {d.subTitle}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 flex w-full items-start justify-start gap-3 rounded-xl bg-main/10 px-4 py-4 shadow-sm sm:items-center">
+            <HeartPulse className="h-8 w-8 shrink-0 text-main sm:h-12 sm:w-12" />
+
+            <span className="text-sm leading-tight text-black/60 sm:text-base">
+              Our experienced and friendly doctors are always ready to deliver{" "}
+              <span className="font-semibold text-main">
+                patient-centred, evidence-based care
+              </span>{" "}
+              to you and your family.
+            </span>
+          </div>
+        </motion.div>
+
+        <div className="relative w-full lg:w-[40%] lg:block hidden">
+          <div className="relative overflow-hidden rounded-2xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
+            <div className="aspect-4/3 overflow-hidden rounded-3xl bg-main/10">
+              <Image
+                src={clinicImage}
+                alt="Family doctors at Olympic Park Clinic"
+                className="h-full w-full object-cover"
+                priority
+              />
+            </div>
+
+            <div className="flex w-full flex-col gap-2 rounded-2xl bg-main px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center justify-start gap-4 w-[60%]">
+                <span className="relative ml-2 flex size-6 items-center justify-center md:ml-0">
+                  <span
+                    className={`absolute inline-flex h-full w-full animate-ping rounded-full ${
+                      storeStatus.isOpen ? "bg-green-400" : "bg-red-400"
+                    } opacity-75`}
+                  />
+                  <span
+                    className={`relative inline-flex size-5 rounded-full ${
+                      storeStatus.isOpen ? "bg-green-500" : "bg-red-400"
+                    }`}
+                  />
+                </span>
+
+                <div className="flex flex-col items-start justify-start">
+                  <p className="text-sm leading-relaxed text-white">
+                    Walk-in status
+                  </p>
+
+                  <span
+                    className={`text-2xl font-black leading-tight sm:text-3xl ${
+                      storeStatus.isOpen ? "text-green-500" : "text-red-400"
+                    }`}
+                  >
+                    {storeStatus.isOpen ? "OPEN NOW" : "CLOSED"}
+                  </span>
+
+                  <p className="text-xs font-semibold leading-relaxed text-white">
+                    {storeStatus.message}
+                  </p>
+                </div>
+              </div>
+
+              <div className="hidden h-16 w-px bg-white/20 lg:block" />
+
+              <div className="flex items-center justify-start gap-3 w-[40%]">
+                <MapPin className="h-8 w-8 shrink-0 text-white sm:h-10 sm:w-10" />
+
+                <div>
+                  <Button className="cursor-pointer rounded-lg bg-white text-base font-medium text-main sm:text-lg">
+                    <Search />
+                    Direction
+                  </Button>
+
+                  <p className="mt-1 text-left text-sm leading-tight text-white sm:text-base">
+                    Get here easily
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        {/* <div className="flex justify-start items-start">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -170,6 +351,14 @@ export default function HomePage() {
             viewport={{ once: true, amount: 0.08 }} 
             className="flex flex-col justify-start items-start md:w-[60%] w-full"
           >
+            <div className="flex gap-1 justify-center items-center px-4 py-2 shadow-sm">
+              <span
+                className="text-green-500"
+              >OPEN NOW</span>
+              <span
+                className="text-sm"
+              >{storeStatus.message} </span>
+            </div>
             <span className="mb-2 text-sm font-semibold leading-relaxed sm:text-base md:text-sm">
               PRIMARA OLYMPIC PARK CLINIC
             </span>
@@ -179,10 +368,6 @@ export default function HomePage() {
               <br className="hidden sm:block" />
               & Walk-in Clinic
             </h1>
-
-            {/* <span className="relative inline-block font-script text-6xl text-[#2F66D8] leading-none">
-              Near You
-            </span> */}
 
             <span className="my-4 font-light text-neutral-600">
               Compassionate care for every stage of life. 
@@ -214,38 +399,9 @@ export default function HomePage() {
                 {" "} to you and your family
               </span>
             </div>
-            {/* <a
-              href={directionsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold mt-4 underline" 
-            >
-              {clinicAddress}
-            </a> */}
-
-            {/* <div className="flex md:flex-row flex-col gap-2 justify-start items-center mt-4">
-              <a
-                href={directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 border-2 border-main px-6 py-2 text-lg font-semibold text-main transition hover:bg-main hover:text-white"
-              >
-                Get Direction
-                <ArrowUpRight size={20} />
-              </a>
-              <a
-                href={`tel:${OfficeNumber}`}
-                className="inline-flex items-center gap-3 border-main border-2 bg-main px-6 py-2 text-lg font-semibold text-white transition hover:opacity-90"
-              >
-                <Phone size={20} />
-                Call: {OfficeNumber}
-              </a>
-            </div> */}
           </motion.div>
 
-          <div className="relative w-[40%]">
-            {/* <div className="absolute -right-6 -top-6 h-40 w-40 rounded-full bg-main/10" /> */}
-
+          <div className="relative w-[40%] md:block hidden">
             <div className="relative overflow-hidden rounded-2xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
               <div className="aspect-4/3 overflow-hidden rounded-3xl bg-main/10">
                 <Image
@@ -259,15 +415,21 @@ export default function HomePage() {
                 <div className="flex items-center justify-start gap-4">
                   <span className="relative flex size-6 items-center justify-center ml-2 md:ml-0">
                     <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${storeStatus.isOpen ? 'bg-green-400' : 'bg-red-400'} opacity-75`} />
-                    <span className={`relative inline-flex size-5 rounded-full ${storeStatus.isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
+                    <span className={`relative inline-flex size-5 rounded-full ${storeStatus.isOpen ? 'bg-green-500' : 'bg-red-400'}`} />
                   </span>
 
                   <div className="flex flex-col items-start justify-start">
-                    <span className={`text-3xl font-black leading-6 md:text-3xl ${storeStatus.isOpen ? 'text-green-500' : 'text-red-600'}`}>
+                    <p className="text-sm leading-relaxed text-white">
+                      Walk-in status
+                    </p>
+                    <span className={`text-3xl font-black leading-6 md:text-3xl ${storeStatus.isOpen ? 'text-green-500' : 'text-red-400'}`}>
                       {storeStatus.isOpen ? 'OPEN NOW' : 'CLOSED'}
                     </span>
-                    {storeStatus.isOpen && <p className="text-sm leading-relaxed text-white">
-                      Until {storeStatus.message} Today
+                    {storeStatus.isOpen && <p className="text-xs leading-relaxed text-white font-semibold">
+                      {storeStatus.message}
+                    </p>}
+                    {!storeStatus.isOpen && <p className="text-xs leading-relaxed text-white font-semibold">
+                      {storeStatus.message}
                     </p>}
                   </div>
                 </div>
@@ -289,7 +451,7 @@ export default function HomePage() {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* <div className="mt-8 w-full mx-auto grid max-w-7xl grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {cards.map((card) => {
             const Icon = card.icon;
@@ -563,77 +725,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="relative mt-14">
-            <button className="doctor-prev absolute left-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-main/20 bg-white shadow-lg">
-              <ChevronLeft className="text-main" />
-            </button>
-
-            <button className="doctor-next absolute right-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-main/20 bg-white shadow-lg">
-              <ChevronRight className="text-main" />
-            </button>
-
-            <Swiper
-              modules={[SwiperNavigation]}
-              navigation={{
-                prevEl: ".doctor-prev",
-                nextEl: ".doctor-next",
-              }}
-              style={{ paddingBottom: '20px'}}
-              spaceBetween={24}
-              breakpoints={{
-                0: {
-                  slidesPerView: 1,
-                },
-                640: {
-                  slidesPerView: 2,
-                },
-                1024: {
-                  slidesPerView: 3,
-                },
-              }}
-              className="px-12"
-            >
-              {doctors.map((doctor, index) => (
-                <SwiperSlide key={doctor.name}>
-                  <motion.article 
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.45, delay: index * 0.08 }}
-                    viewport={{ once: true, amount: 0.3 }}
-                    className="overflow-hidden rounded-3xl bg-white border border-main/20 shadow-xl shadow-main/10 transition-all duration-300 hover:-translate-y-1">
-                    <div className="relative h-95">
-                      <Image
-                        src={logo}
-                        alt={doctor.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-
-                    <div className="p-6">
-                      <p className="text-sm font-medium text-neutral-500">
-                        {doctor.role}
-                      </p>
-
-                      <div>
-                        <h3 className="mt-2 text-2xl font-bold text-neutral-950">
-                          {doctor.name}
-                        </h3>
-
-                        <span className="text-neutral-500">
-                          {doctor.qualification}
-                        </span>
-                      </div>
-
-                      <p className="mt-4 font-medium text-main">
-                        {doctor.status}
-                      </p>
-                    </div>
-                  </motion.article>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </div>
+          <DoctorCard doctors={doctors}/>
 
           <div className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
@@ -715,7 +807,7 @@ export default function HomePage() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 border-2 border-main px-8 py-4 text-lg font-semibold text-main transition hover:bg-main hover:text-white"
               >
-                Get Directions on Google Maps
+                Get Directions
                 <ArrowUpRight size={20} />
               </a>
             </div>

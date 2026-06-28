@@ -107,7 +107,7 @@ const services = [
 export default function FamilyDoctor() {
   return (
     <main className="bg-white">
-      <section className="relative overflow-hidden bg-[#f3f7fc] px-4 py-20 sm:px-6 lg:px-12">
+      <section className="relative overflow-hidden bg-main-lightest px-4 py-10 sm:px-6 lg:px-12">
         <motion.div 
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -120,16 +120,16 @@ export default function FamilyDoctor() {
               Accepting New Patients
             </span>
 
-            <h1 className="mt-6 max-w-3xl text-center text-4xl font-black leading-16 text-neutral-950 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 max-w-3xl text-center text-4xl font-black  text-neutral-950 sm:text-5xl lg:text-6xl">
               Family Doctors in Calgary Accepting{" "}
               <span className="text-main">New Patients Now</span>
             </h1>
 
-            <p className="mt-6 text-2xl font-semibold text-neutral-800">
+            <p className="mt-4 text-2xl font-semibold text-neutral-800 text-center">
               Male and Female Family Doctors
             </p>
 
-            <p className="mt-4 text-xl text-center leading-8 text-neutral-600 md:w-[60%]">
+            <p className="mt-4 text-xl text-center text-neutral-600 md:w-[60%]">
               Looking for a family doctor you can trust? Our caring physicians
               provide long-term, comprehensive care for individuals and families,
               with walk-ins welcome and convenient access throughout the week.
@@ -275,7 +275,7 @@ export default function FamilyDoctor() {
                       className="overflow-hidden rounded-3xl bg-white border border-main/20 shadow-xl shadow-main/10 transition-all duration-300 hover:-translate-y-1">
                       <div className="relative h-95">
                         <Image
-                          src={logo}
+                          src={doctor.image || logo}
                           alt={doctor.name}
                           fill
                           className="object-cover"

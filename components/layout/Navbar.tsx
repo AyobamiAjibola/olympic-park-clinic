@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, ArrowUp, Calendar, ChevronDown, Clock, MapPin, Menu, MessageCircleMore, Phone, Search, X } from "lucide-react";
+import { ArrowDown, ArrowUp, Calendar, ChevronDown, Menu, Phone, X } from "lucide-react";
 import { NavLink } from "@/components/common/NavLink";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -24,47 +24,10 @@ const links = [
   { to: "/contact", label: "Contact" },
 ];
 
-type IProps = {
-  showWalkInStatus?: boolean;
-}
-
-const Navbar = ({showWalkInStatus = true}: IProps) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
-
-  const getStoreStatus = () => {
-    const now = new Date();
-    const day = now.getDay();
-
-    let closingHour = 19;
-    let closingTimeText = "7:00 PM";
-
-    if (day === 0) {
-      closingHour = 14;
-      closingTimeText = "2:00 PM";
-    } else if (day === 6) {
-      closingHour = 16;
-      closingTimeText = "4:00 PM";
-    }
-
-    const currentTime = now.getHours() * 60 + now.getMinutes();
-    const closingTime = closingHour * 60;
-
-    if (currentTime >= closingTime) {
-      return {
-        isOpen: false,
-        message: "Currently Closed",
-      };
-    }
-
-    return {
-      isOpen: true,
-      message: `Open Today Until ${closingTimeText}`,
-    };
-  };
-
-  const storeStatus = getStoreStatus();
 
   return (
     <header className="sticky top-0 z-50 w-full">

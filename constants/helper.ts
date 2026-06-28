@@ -1,4 +1,4 @@
-export const OfficeNumber = "587-123-4567"
+export const OfficeNumber = "403-900-5551"
 export const fax = "403-900-5552"
 export const clinicEmail = "clinic@primaraolympicparkclinic.ca"
 export const clinicAddress = `34 Canada Olympic Common SW, Calgary, AB T3H 6K4`
@@ -18,7 +18,7 @@ export const doctors = [
     role: "Family Doctor",
     status: "Accepting New Patients",
     qualification: "(MD, MRCGP, LMCC, CCFP)",
-    image: "/images/doctors/female-doctor.jpg",
+    image: "",
     gender: "male"
   },
   {
@@ -26,7 +26,15 @@ export const doctors = [
     role: "Family Doctor",
     status: "Accepting New Patients",
     qualification: "(MBBS, MRCGP, LMCC)",
-    image: "/images/doctors/dr-ebele.jpg",
+    image: "",
     gender: "male"
+  },
+  {
+    name: "Dr. Jane Doe",
+    role: "Family Doctor",
+    status: "Accepting New Patients",
+    qualification: "(MBBS, MRCGP, LMCC)",
+    image: "",
+    gender: "female"
   }
 ];

@@ -15,7 +15,7 @@ const quickLinks = [
 export function Footer() {
 
   return (
-    <footer className="bg-main text-white py-12">
+    <footer className="bg-main text-white py-12 px-4">
       <div className="mx-auto grid max-w-7xl gap-10 md:grid-cols-2 lg:grid-cols-[0.4fr_1.6fr_1fr_1.4fr]">
         <div>
           <Image
