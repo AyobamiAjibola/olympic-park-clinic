@@ -26,6 +26,7 @@ export default function ChatPanel({setIsOpen, isOpen, onResetChat}: IProps) {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [errMsg, setErrorMsg] = useState<string>('');
+    console.log(errMsg)
     const isInitializingRef = useRef(false);
 
     const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -188,9 +189,10 @@ export default function ChatPanel({setIsOpen, isOpen, onResetChat}: IProps) {
             const nextFlow = clinicAssistantFlow[button.next];
 
             appendBotResponseWithLoading(
-                nextFlow.messages.map((message: ChatMessage) => ({
+                nextFlow.messages.map((message) => ({
                     ...message,
                     id: crypto.randomUUID(),
+                    from: "bot" as const,
                 })) as ChatMessage[],
                 600
             );

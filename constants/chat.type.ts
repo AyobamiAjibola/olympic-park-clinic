@@ -2,7 +2,7 @@ export const CHAT_STORAGE_KEY = "primara-clinic-chat";
 
 export interface ChatButton {
   name: string;
-  next?: string;
+  next?: FlowKey;
   action?: string;
 }
 
