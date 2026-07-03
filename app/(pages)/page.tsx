@@ -187,7 +187,7 @@ export default function HomePage() {
           </span>
 
           <h1 className="text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
-            Family Medicine
+            Family Medicine {" "}
             <br className="hidden sm:block" />
             & Walk-in Clinic
           </h1>

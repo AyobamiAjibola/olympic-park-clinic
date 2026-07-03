@@ -11,6 +11,7 @@ export const directionsUrl =
 export const monFriHrs = "Monday - Friday: 9:00 AM — 7:00 PM"
 export const sundayHrs = "Sunday: 10:00 AM — 2:00 PM"
 export const saturdayHrs = "Saturday: 10:00 AM — 4:00 PM"
+export const BOOKING_LINK = "https://calendar.app.google/VsiUVgFyJ5fGdyaE7";
 
 export const doctors = [
   {
@@ -38,3 +39,4 @@ export const doctors = [
     gender: "female"
   }
 ];
+

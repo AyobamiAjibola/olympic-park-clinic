@@ -28,7 +28,7 @@ export function Footer() {
         <div>
           <h3 className="text-2xl font-bold">Olympic Park Clinic</h3>
           <p className="mt-3 max-w-md text-base leading-7 text-white/80">
-            Open 7 days a week with real family doctors and walk-ins welcome.
+            Open 7 days a week with real family doctors and walk-ins are welcome.
             We provide accessible, compassionate care for individuals and
             families in Calgary.
           </p>

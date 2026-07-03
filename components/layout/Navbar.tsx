@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logo from "@/public/logo.png"
 import Image from "next/image";
-import { OfficeNumber } from "@/constants/helper";
+import { BOOKING_LINK, OfficeNumber } from "@/constants/helper";
 import { usePathname } from "next/navigation";
 
 const links = [
@@ -123,7 +123,11 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block">
-          <Button className="rounded-lg bg-main py-5 w-auto cursor-pointer">
+          <Button className="rounded-lg bg-main py-5 w-auto cursor-pointer"
+            onClick={() =>
+              window.open(BOOKING_LINK, "_blank")
+            }
+          >
             <Calendar color="white"/>
             <span className="text-white text-base">
               Book Appointment
