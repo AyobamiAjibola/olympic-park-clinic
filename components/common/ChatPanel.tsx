@@ -318,12 +318,6 @@ export default function ChatPanel({setIsOpen, isOpen, onResetChat}: IProps) {
 
     return (
         <div
-            // className={cn(
-            //     "fixed bottom-6 right-6 z-999 transition-all duration-700 ease-out",
-            //     isOpen
-            //         ? "translate-y-0 opacity-100 scale-100"
-            //         : "pointer-events-none translate-y-6 opacity-0 scale-95"
-            // )}
             className={cn(
                 "fixed bottom-6 right-6 z-999 origin-bottom-right transition-all duration-300",
                 isOpen
