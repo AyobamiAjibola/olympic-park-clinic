@@ -19,7 +19,7 @@ import {
   ArrowUpRight,
   Stethoscope,
 } from "lucide-react";
-import { directionsUrl, doctors, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
+import { directionsUrl, doctors, getStoreStatus_, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
 import { ServicesSection } from "@/components/layout/ServicesSection";
 import Link from "next/link";
 import { motion } from "motion/react";
@@ -36,9 +36,9 @@ type DataType = {
 
 const data = [
   {
-    title: <span className="font-semibold">Open 7 Days</span>,
+    title: <span className="font-semibold">Open 6 Days</span>,
     icon: <CalendarDays className="text-main" size={20}/>,
-    subTitle: <span className="text-neutral-500 leading-4 text-sm">Including Weekends</span>
+    subTitle: <span className="text-neutral-500 leading-4 text-sm">Mon - Sat</span>
   },
   {
     title: <span className="font-semibold">Real Doctors</span>,
@@ -83,7 +83,6 @@ const patientCards = [
 ];
 
 const items = [
-  // "Open 7 Days",
   "Long-term family doctor care",
   "Same-day walk-in visits",
   "Preventive and chronic disease management",
@@ -111,56 +110,8 @@ const highlights = [
 
 export default function HomePage() {
 
-  const getStoreStatus_ = () => {
-    const now = new Date();
-    const day = now.getDay(); // 0 = Sunday, 6 = Saturday
-
-    const hours = [
-      { open: 10, close: 14, openText: "10:00 AM", closeText: "2:00 PM" }, // Sunday
-      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Monday
-      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Tuesday
-      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Wednesday
-      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Thursday
-      { open: 9, close: 19, openText: "9:00 AM", closeText: "7:00 PM" },   // Friday
-      { open: 10, close: 16, openText: "10:00 AM", closeText: "4:00 PM" }, // Saturday
-    ];
-
-    const today = hours[day];
-
-    const currentMinutes = now.getHours() * 60 + now.getMinutes();
-    const openingMinutes = today.open * 60;
-    const closingMinutes = today.close * 60;
-
-    // Before opening today
-    if (currentMinutes < openingMinutes) {
-      return {
-        isOpen: false,
-        message: `Opens Today at ${today.openText}`,
-      };
-    }
-
-    // During business hours
-    if (currentMinutes < closingMinutes) {
-      return {
-        isOpen: true,
-        message: `Until ${today.closeText} Today`,
-      };
-    }
-
-
-    // Closed, find next opening day
-    const nextDay = (day + 1) % 7;
-    const next = hours[nextDay];
-
-    return {
-      isOpen: false,
-      message: `Opens Tomorrow at ${next.openText}`,
-    };
-  };
-
   const storeStatus = getStoreStatus_();
   
-  console.log(getStoreStatus_(), 'status')
   return (
     <main>
       <section
