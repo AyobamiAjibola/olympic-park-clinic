@@ -77,8 +77,8 @@ const Navbar = () => {
                     <ul 
                       className="absolute left-0 top-full z-999 hidden w-96 rounded-lg bg-blue-50 px-6 py-4 shadow-lg group-hover:block"
                     >
-                      {link.children.map((child) => (
-                        <li key={child.to}
+                      {link.children.map((child, index) => (
+                        <li key={index}
                           className={`group relative py-2`}
                         >
                           <NavLink
@@ -130,7 +130,7 @@ const Navbar = () => {
           >
             <Calendar color="white"/>
             <span className="text-white text-base">
-              Book Appointment
+              Book
             </span>
           </Button>
         </div>
@@ -152,8 +152,8 @@ const Navbar = () => {
         )}
       >
         <ul className="flex flex-col gap-1 px-6 py-4">
-          {links.map((link) => (
-            <li key={link.to} className="relative group">
+          {links.map((link, index) => (
+            <li key={index} className="relative group">
               {
                 link.children ? (
                   <div className="flex justify-center items-center flex-col">
@@ -186,8 +186,8 @@ const Navbar = () => {
                     </button>
                     {openMobileDropdown === link.label && (
                       <ul className='mt-3 flex w-[90%] flex-col rounded-lg py-2 shadow-lg'>
-                          {link.children.map((child) => (
-                            <li key={child.to}
+                          {link.children.map((child, index) => (
+                            <li key={index}
                               className={`py-2`}
                             >
                               <NavLink
