@@ -43,7 +43,7 @@ const data = [
   {
     title: <span className="font-semibold">Real Doctors</span>,
     icon: <Users className="text-main" size={20}/>,
-    subTitle: <span className="text-neutral-500 leading-4 text-sm">Experienced family <br/>physician</span>
+    subTitle: <span className="text-neutral-500 leading-4 text-sm">Experienced family <br/>physicians</span>
   },
   {
     title: <span className="font-semibold leading-4">Direct Billing</span>,

@@ -311,7 +311,8 @@ export default function ContactContent() {
           <div className="rounded-4xl bg-white p-6 shadow-xl shadow-blue-950/5">
             <HourRow day="Monday to Friday" time="9:00 AM — 7:00 PM" />
             <HourRow day="Saturday" time="10:00 AM — 4:00 PM" />
-            <HourRow day="Sunday" time="10:00 AM — 2:00 PM" noBorder />
+            <HourRow day="Sunday" time="Closed" />
+            <HourRow day="Holidays" time="Closed" noBorder />
           </div>
         </div>
       </section>
