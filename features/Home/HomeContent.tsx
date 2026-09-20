@@ -1,7 +1,9 @@
 "use client"
 
 import Image from "next/image"
-import clinicImage from "@/public/clinic-hero.png";
+import clinicImage from "@/public/primara.jpeg";
+import clinicImage2 from "@/public/primara_4.jpeg";
+import clinicImage3 from "@/public/primara_2.jpeg";
 import { 
   CalendarDays, MapPin, 
   Phone, 
@@ -302,7 +304,7 @@ export default function HomeContent() {
 
             <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/10">
               <Image
-                src={clinicImage}
+                src={clinicImage2}
                 alt="Olympic Park Clinic building"
                 className="h-70 w-full object-cover sm:h-95 lg:h-130"
                 priority
@@ -406,7 +408,7 @@ export default function HomeContent() {
 
             <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/10">
               <Image
-                src={clinicImage}
+                src={clinicImage3}
                 alt="Olympic Park Clinic building"
                 className="h-50 w-full object-cover sm:h-75 lg:h-110"
                 priority

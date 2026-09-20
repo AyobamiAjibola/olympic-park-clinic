@@ -21,7 +21,7 @@ import {
   UserCheck,
 } from "lucide-react";
 
-import clinicImage from "@/public/clinic-hero.png";
+import clinicImage from "@/public/primara_2.jpeg";
 import doctorsImage from "@/public/clinic-hero.png";
 
 const steps = [
