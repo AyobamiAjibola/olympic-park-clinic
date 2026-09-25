@@ -1,6 +1,6 @@
 export const OfficeNumber = "403-900-5551"
 export const fax = "403-900-5552"
-export const clinicEmail = "clinic@primaraolympicparkclinic.ca"
+export const clinicEmail = "info@primaraolympicparkclinic.ca"
 export const clinicAddress = `34 Canada Olympic Common SW, Calgary, AB T3H 6K4`
 export const mapAddress = "Canada Olympic Common Southwest, Calgary, AB T3H 6K4, Canada";
 export const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
