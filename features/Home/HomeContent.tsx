@@ -2,8 +2,8 @@
 
 import Image from "next/image"
 import clinicImage from "@/public/primara.jpeg";
-import clinicImage2 from "@/public/primara_4.jpeg";
-import clinicImage3 from "@/public/primara_2.jpeg";
+import clinicImage3 from "@/public/primara_3.jpeg";
+import clinicImage2 from "@/public/primara_2.jpeg";
 import { 
   CalendarDays, MapPin, 
   Phone, 
@@ -17,18 +17,25 @@ import {
   HeartPulse,
   ArrowRight,
   Clock,
-  PhoneCall,
-  ArrowUpRight,
   Stethoscope,
+  Heart,
+  Calendar,
+  Footprints,
+  Users2,
+  HeartIcon,
+  ParkingSquare,
+  Clock3,
 } from "lucide-react";
-import { directionsUrl, doctors, getStoreStatus_, mapUrl, monFriHrs, OfficeNumber, saturdayHrs, sundayHrs } from "@/constants/helper";
-import { ServicesSection } from "@/components/layout/ServicesSection";
-import Link from "next/link";
+import {  BOOKING_LINK, directionsUrl, getStoreStatus_, getTodayHours, OfficeNumber } from "@/constants/helper";
 import { motion } from "motion/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Button } from "@/components/ui/button";
-import DoctorCard from "@/components/layout/DoctorCard";
+import OpenIndicator from "@/components/OpenIndicator";
+import FeatureCarousel from "@/components/FeatureCarousel";
+import ServiceSection from "@/components/Services";
+import DoctorsSection from "@/components/DoctorsSection";
+import BgFlower from "@/public/bgFlowery.png";
 
 type DataType = {
   title: React.ReactNode;
@@ -112,528 +119,404 @@ const highlights = [
 
 export default function HomeContent() {
 
+  const heroTitle = "Thoughtful care"
+  const heroTitle2 = "close to home"
+  const subTitle = "Compassionate, evidence-based primary care for every stage of life."
+
+  const heroContent = [
+    {
+      icon: <Users color="#205090"/>,
+      item: "Patients of all ages welcome"
+    },
+    {
+      icon: <Heart color="#205090"/>,
+      item: "Patients of all ages welcome"
+    },
+    {
+      icon: <Calendar color="#205090"/>,
+      item: "Patients of all ages welcome"
+    }
+  ]
+
+  const mobileOpen = getTodayHours();
   const storeStatus = getStoreStatus_();
   
   return (
     <main>
       <section
         className="
-          lg:h-screen pb-6 px-4 lg:px-12 flex 
-          justify-center items-center 
-          bg-main-lightest flex-col
-          bg-[url('/bg.png')]
-          bg-cover
-          bg-center
-          bg-no-repeat
+          h-screen pb-6 flex 
+          items-center
+          bg-white relative
+          overflow-hidden
           "
-    >
-      <div className="flex flex-col items-start justify-start gap-10 lg:flex-row lg:items-start">
+      >
+        <div className="absolute inset-0 w-full h-full flex justify-end">
+          <div className="relative h-full w-full md:w-[50%]">
+            <Image
+              src={clinicImage}
+              alt="Clinic"
+              className="h-full w-full object-fill"
+            />
+            <div 
+              className="
+                absolute
+                bottom-20
+                left-1/2
+                -translate-x-1/2
+                flex-col
+                gap-4
+                rounded-2xl
+                bg-white shadow-md
+                py-2 px-8
+                md:block hidden
+              "
+            >
+              <OpenIndicator />
+            </div>
+          </div>
+          <div className="absolute h-full w-full md:hidden block bg-black/50">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.08 }}
+              viewport={{ once: true, amount: 0.08 }}
+              className="h-full justify-start w-full bg-transparent flex flex-col px-6 mt-16"
+            >
+              <span className="font-black text-[40px] text-white text-left leading-[1.05]">{heroTitle},{" "}
+              <span className="font-black text-[40px] text-white text-left leading-[1.05]">{heroTitle2}.</span></span>
+              <span className="text-lg text-white text-left leading-5 mt-2">{subTitle}</span>
+
+              <div className="mt-8 flex w-full flex-col">
+                <Button className="flex flex-1 items-center bg-main-light p-4 rounded-xl"
+                  onClick={() =>
+                    window.open(BOOKING_LINK, "_blank")
+                  }
+                >
+                  <Calendar className="w-5! h-5! shrink-0" color="white"/>
+                  <span className="text-white text-lg font-semibold">Book an Appointment</span>
+                  <ArrowRight color="white" className="w-5! h-5! shrink-0"/>
+                </Button>
+
+                <div className="mt-3 grid grid-cols-2 gap-3">
+                  <a
+                    href="tel:4039005551"
+                    className="
+                      flex h-13 items-center justify-center gap-2
+                      rounded-xl border-2 border-white
+                      bg-transparent
+                    "
+                  >
+                    <Phone size={20} color="white"/>
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-white text-sm">Call Clinic</span>
+                      <span className="text-white text-xs">403-900-5551</span>
+                    </div>
+                  </a>
+
+                  <a
+                    href={directionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
+                      flex h-13 items-center justify-center gap-2
+                      rounded-xl border-2 border-white
+                      bg-transparent
+                    "
+                  >
+                    <MapPin color="white"/>
+                    <span className="font-semibold text-white text-sm">Directions</span>
+                  </a>
+                </div>
+              </div>
+
+              <div className="mt-8 pt-8">
+                <div
+                  className="
+                    overflow-hidden rounded-2xl
+                    border border-white/40
+                    bg-white/95
+                    text-[#123B68]
+                    shadow-xl
+                    backdrop-blur-md
+                  "
+                >
+                  <div className="flex items-center justify-between border-b border-gray-200 p-4">
+                    <div className="flex gap-2 items-center">
+                      <div className="bg-main/10 rounded-full p-2">
+                        <Clock color="#205090" size={18}/>
+                      </div>
+
+                      <div className="flex flex-col items-start">
+                        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                          Walk-in Status
+                        </p>
+
+                        <p className={`font-bold ${storeStatus.isOpen ? 'text-main text-[16px]' : 'text-red-600 text-lg'}`}>
+                          {storeStatus.isOpen ? mobileOpen : "Closed"}
+                        </p>
+                      </div>
+                    </div>
+
+                    {storeStatus.isOpen && <div className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-2">
+                      <span className="size-2 rounded-full bg-green-500" />
+                      <span className="text-xs font-bold text-green-600">
+                        OPEN
+                      </span>
+                    </div>}
+                  </div>
+
+                  <div className="grid grid-cols-2 divide-x divide-gray-200 py-4 pl-4">
+                    <div className="flex gap-2 items-start">
+                      <div className="bg-main/10 rounded-full p-2">
+                        <Users2 color="#205090" size={18}/>
+                      </div>
+
+                      <div className="flex flex-col items-start">
+                        <p className="text-xs text-gray-500">
+                          Family practice
+                        </p>
+
+                        <p className="mt-1 text-sm font-bold">
+                          Accepting new patients
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex gap-2 items-start ml-1">
+                      <div className="bg-main/10 rounded-full p-2">
+                        <Footprints color="#205090" size={18}/>
+                      </div>
+
+                      <div className="flex flex-col items-start">
+                        <p className="text-xs text-gray-500">
+                          Walk-in clinic
+                        </p>
+
+                        <p className="mt-1 text-sm font-bold">
+                          Walk-ins welcome
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </motion.div>
+          </div>
+        </div>
+
+        <div
+          className="absolute inset-0 blur-sm md:block hidden"
+          style={{
+            background:
+              "linear-gradient(to right, white 52%, white 35%, rgba(255,255,255,0.8) 20%, transparent 30%)",
+          }}
+        />
+
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45, delay: 0.08 }}
           viewport={{ once: true, amount: 0.08 }}
-          className="flex w-full flex-col items-start justify-start lg:w-[60%]"
+          className="relative z-10 h-full w-[50%] px-8 md:flex hidden bg-transparent flex-col justify-start items-start"
         >
-          <span className="sm:mt-4 text-sm font-semibold leading-relaxed text-main sm:text-base">
-            PRIMARA OLYMPIC PARK CLINIC
+          <span className="font-black text-[60px] text-main tracking-[-0.03em] mt-20 mb-4 leading-[1.05]">{heroTitle}, {" "}
+          <span className="font-black text-[60px] text-main-light mb-5 tracking-[-0.03em] leading-[1.05]">{heroTitle2}.</span></span>
+          <span className="text-xl text-main mt-1 md:w-[80%]">
+            Compassionate, evidence-based primary care for every stage of life.
           </span>
 
-          <h1 className="text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
-            Family Medicine {" "}
-            <br className="hidden sm:block" />
-            & Walk-in Clinic
-          </h1>
+          <div className="w-full flex gap-2 mt-12">
+            <Button className="flex flex-1 items-center bg-main-light p-6 rounded-xl border border-main-light">
+              <Phone color={"white"}/>
+              <span className="text-white text-lg font-semibold">
+                {OfficeNumber}
+              </span>
+            </Button>
+            <a 
+              href={directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-1 items-center justify-center bg-transparent border border-solid border-main p-2 rounded-xl hover:bg-white/60">
+              <MapPin color={"#205090"} />
+              <span className="text-main text-lg font-semibold">
+                Get Direction
+              </span>
+            </a>
+          </div>
 
-          <span className="my-4 text-base font-light leading-relaxed text-neutral-600 sm:text-lg">
-            Compassionate care for every stage of life.
-            <br className="hidden sm:block" />
-            No appointment required. Walk in anytime.
-          </span>
+          <div 
+            className="
+              bottom-1/4 w-full flex 
+              flex-wrap
+              md:mt-12 items-start
+            "
+          >
+            {
+              heroContent.map((item, index) => 
+                <div key={index} 
+                  className={`flex-1 basis-[30%] min-w-42.5 gap-2 px-4 flex items-start flex-col
+                    ${index === 1 ? 'border-l border-r border-l-gray-200 border-r-gray-200' : ''}`}
+                >
+                  <div className="text-[80px]">{item.icon}</div>
+                  <span className="text-main leading-[1.05] text-base">{item.item}</span>
+                </div>
+              )
+            }
+          </div>
+        </motion.div>
+      </section>
+      
+      <FeatureCarousel />
+      <ServiceSection />
 
-          <div className="relative w-full lg:hidden block">
-            <div className="relative overflow-hidden rounded-2xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
-              <div className="aspect-4/3 overflow-hidden rounded-3xl bg-main/10">
-                <Image
-                  src={clinicImage}
-                  alt="Family doctors at Olympic Park Clinic"
-                  className="h-full w-full object-cover"
-                  priority
+      <DoctorsSection limit={2} />
+
+      <div className="relative flex w-full min-h-24 mb-6">
+        <Image
+          src={BgFlower}
+          alt="inclusive"
+          fill
+          className="object-cover z-0"
+        />
+
+        <div className="relative z-10 flex items-center py-4 px-6 gap-2">
+          <Heart color="#0D93AF" fill="#0D93AF" className="md:h-12! md:w-12! h-16! w-16!"/> 
+          <div className="flex flex-col">
+            <span className="font-bold md:text-sm text-xs">Inclusive care for a healthier community</span>
+            <span className="md:text-sm text-xs">
+              We welcome patients of all backgrounds, cultures, identities
+              and life stages. Everyone belongs here.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <section className="w-full bg-white px-5 py-16 md:px-10 lg:px-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-6">
+            <p className="mb-1 text-xs font-bold uppercase tracking-wider text-main-light">
+              Hours & Location
+            </p>
+
+            <h2 className="text-3xl font-black tracking-tight text-main md:text-2xl">
+              Convenient care in Southwest Calgary
+            </h2>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr_1fr]">
+            <div className="grid grid-cols-2 gap-3">
+              <Image
+                src={clinicImage2}
+                alt="Primara Olympic Park Medical Clinic entrance"
+                className="h-full min-h-60 w-full rounded-xl object-cover"
+              />
+
+              <Image
+                src={clinicImage3}
+                alt="Primara Olympic Park Medical Clinic and pharmacy"
+                className="h-full min-h-60 w-full rounded-xl object-cover"
+              />
+            </div>
+
+            <div className="flex flex-col gap-7 lg:border-r lg:border-gray-200 lg:pr-8">
+              
+              <div className="flex items-start gap-4">
+                <MapPin
+                  className="mt-1 size-7 shrink-0 text-main-light"
+                  strokeWidth={2}
                 />
+
+                <div>
+                  <h3 className="font-bold text-main">
+                    Primara Olympic Park Medical Clinic
+                  </h3>
+
+                  <p className="mt-1 text-sm leading-6 text-gray-600">
+                    34 Canada Olympic Common SW
+                    <br />
+                    Calgary, AB T3H 6K4
+                  </p>
+
+                  <a
+                    href={directionsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 text-sm font-bold text-main-light"
+                  >
+                    Get Directions
+                    <ArrowRight className="size-4" />
+                  </a>
+                </div>
               </div>
 
-              <div className="flex w-full flex-col gap-2 rounded-2xl bg-main p-1 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex items-center justify-start gap-4">
-                  <span className="relative ml-2 flex size-6 items-center justify-center md:ml-0">
-                    <span
-                      className={`absolute inline-flex h-full w-full animate-ping rounded-full ${
-                        storeStatus.isOpen ? "bg-green-400" : "bg-red-400"
-                      } opacity-75`}
-                    />
-                    <span
-                      className={`relative inline-flex size-5 rounded-full ${
-                        storeStatus.isOpen ? "bg-green-500" : "bg-red-400"
-                      }`}
-                    />
-                  </span>
+              <div className="flex items-start gap-4">
+                <ParkingSquare
+                  className="mt-1 size-7 shrink-0 text-main-light"
+                  strokeWidth={2}
+                />
 
-                  <div className="flex flex-col items-start justify-start">
-                    <p className="text-sm leading-relaxed text-white">
-                      Walk-in status
-                    </p>
+                <div>
+                  <h3 className="font-bold text-main">
+                    Free parking
+                  </h3>
 
-                    <span
-                      className={`text-2xl font-black leading-tight sm:text-3xl ${
-                        storeStatus.isOpen ? "text-green-500" : "text-red-400"
-                      }`}
-                    >
-                      {storeStatus.isOpen ? "OPEN NOW" : "CLOSED"}
+                  <p className="mt-1 text-sm text-gray-600">
+                    Ample on-site parking for our patients.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-4">
+              <Clock3
+                className="mt-1 size-7 shrink-0 text-main-light"
+                strokeWidth={2}
+              />
+
+              <div className="w-full">
+                <h3 className="mb-4 font-bold text-main">
+                  Clinic Hours
+                </h3>
+
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between gap-6">
+                    <span className="text-gray-600">
+                      Monday – Friday
                     </span>
 
-                    <p className="text-xs font-semibold leading-relaxed text-white">
-                      {storeStatus.message}
-                    </p>
+                    <span className="whitespace-nowrap font-medium text-main">
+                      9:00 AM – 7:00 PM
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-6">
+                    <span className="text-gray-600">
+                      Saturday
+                    </span>
+
+                    <span className="whitespace-nowrap font-medium text-main">
+                      10:00 AM – 4:00 PM
+                    </span>
+                  </div>
+
+                  <div className="flex justify-between gap-6">
+                    <span className="text-gray-600">
+                      Sunday & holidays
+                    </span>
+
+                    <span className="font-medium text-main">
+                      Closed
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="lg:grid hidden w-full grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 lg:pr-8">
-            {data.map((d: DataType, key: number) => (
-              <div
-                key={key}
-                className="flex min-h-20 items-center gap-3 rounded-xl bg-white p-4 shadow-md"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-100 p-2">
-                  {d.icon}
-                </div>
-
-                <div className="flex min-w-0 flex-col items-start justify-start">
-                  {d.title}
-                  {d.subTitle}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-6 flex w-full items-start justify-start gap-3 rounded-xl bg-main/10 px-4 py-4 shadow-sm sm:items-center">
-            <HeartPulse className="h-8 w-8 shrink-0 text-main sm:h-12 sm:w-12" />
-
-            <span className="text-sm leading-tight text-black/60 sm:text-base">
-              Our experienced and friendly doctors are always ready to deliver{" "}
-              <span className="font-semibold text-main">
-                patient-centred, evidence-based care
-              </span>{" "}
-              to you and your family.
-            </span>
-          </div>
-        </motion.div>
-
-        <div className="relative w-full lg:w-[40%] lg:block hidden">
-          <div className="relative overflow-hidden rounded-2xl border border-main/15 bg-white p-3 shadow-2xl shadow-main/10">
-            <div className="aspect-4/3 overflow-hidden rounded-3xl bg-main/10">
-              <Image
-                src={clinicImage}
-                alt="Family doctors at Olympic Park Clinic"
-                className="h-full w-full object-cover"
-                priority
-              />
-            </div>
-
-            <div className="flex w-full flex-col gap-4 rounded-2xl bg-main px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-center justify-start gap-4 w-[60%]">
-                <span className="relative ml-2 flex size-6 items-center justify-center md:ml-0">
-                  <span
-                    className={`absolute inline-flex h-full w-full animate-ping rounded-full ${
-                      storeStatus.isOpen ? "bg-green-400" : "bg-red-400"
-                    } opacity-75`}
-                  />
-                  <span
-                    className={`relative inline-flex size-5 rounded-full ${
-                      storeStatus.isOpen ? "bg-green-500" : "bg-red-400"
-                    }`}
-                  />
-                </span>
-
-                <div className="flex flex-col items-start justify-start">
-                  <p className="text-sm leading-relaxed text-white">
-                    Walk-in status
-                  </p>
-
-                  <span
-                    className={`text-2xl font-black leading-tight sm:text-3xl ${
-                      storeStatus.isOpen ? "text-green-500" : "text-red-400"
-                    }`}
-                  >
-                    {storeStatus.isOpen ? "OPEN NOW" : "CLOSED"}
-                  </span>
-
-                  <p className="text-xs font-semibold leading-relaxed text-white">
-                    {storeStatus.message}
-                  </p>
-                </div>
-              </div>
-
-              <div className="hidden h-16 w-px bg-white/20 lg:block" />
-
-              <div className="flex items-center justify-start gap-3 w-[40%]">
-                {/* <MapPin className="h-8 w-8 shrink-0 text-white sm:h-10 sm:w-10" /> */}
-
-                <div>
-                  <Button className="cursor-pointer rounded-lg bg-white text-base font-medium text-main sm:text-lg">
-                    <MapPin />
-                    Direction
-                  </Button>
-
-                  <p className="mt-1 text-left text-sm leading-tight text-white sm:text-base">
-                    Get here easily
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      </section>
-      
-      <section className="relative overflow-hidden bg-white px-4 py-16 sm:px-6 lg:px-12 lg:py-14">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
-          <div className="relative">
-            <div className="absolute -left-5 -top-5 hidden h-44 w-44 rounded-2xl bg-main lg:block" />
-
-            <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/10">
-              <Image
-                src={clinicImage2}
-                alt="Olympic Park Clinic building"
-                className="h-70 w-full object-cover sm:h-95 lg:h-130"
-                priority
-              />
-            </div>
-
-            <div className="absolute -bottom-8 -left-6 hidden grid-cols-6 gap-2 lg:grid">
-              {Array.from({ length: 30 }).map((_, index) => (
-                <span key={index} className="h-1 w-1 rounded-full bg-main/60" />
-              ))}
-            </div>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            viewport={{ once: true, amount: 0.08 }} 
-          >
-            <h2 className="mt-8 text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
-              Why Calgary Trusts{" "}
-              <span className="block text-black">Olympic Park Clinic</span>
-            </h2>
-
-            <p className="mt-2 max-w-xl text-lg leading-8 text-neutral-600 sm:text-xl">
-              We are here when you need care the most.
-            </p>
-
-            <div className="mt-2 space-y-1">
-              {items.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center gap-4 border-b border-neutral-200 py-2 last:border-b-0"
-                >
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-main/10">
-                    <Check className="text-main" size={22} strokeWidth={3} />
-                  </span>
-
-                  <span className="text-base font-medium leading-7 text-neutral-900 sm:text-lg">
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
-            
-            <div className="flex gap-4 md:flex-row flex-col mt-4">
-              <a
-                href={`tel:${OfficeNumber}`}
-                className="inline-flex items-center gap-3  bg-main px-6 py-2 text-lg font-semibold text-white transition hover:opacity-90"
-              >
-                <Phone size={20} />
-                Call: {OfficeNumber}
-              </a>
-
-              <Link
-                href="/meet-our-doctors"
-                className="inline-flex items-center gap-3 border-2 border-main px-6 py-2 text-lg font-semibold text-main transition hover:bg-main hover:text-white"
-              >
-                Get Direction
-                <ArrowUpRight size={20} />
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section className="pb-6 px-4 lg:px-12 flex flex-col justify-center items-center bg-main-lightest py-12">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, delay: 0.08 }}
-            viewport={{ once: true, amount: 0.08 }} 
-            className="flex flex-col justify-start items-start"
-          >
-            <h2 className="text-6xl font-bold leading-relaxed">Our <span className="text-main">Mission</span></h2>
-            <span className="text-xl leading-relaxed">
-              At Primara Olympic Park Clinic, our mission is to provide compassionate, 
-              accessible, and patient-centered primary healthcare that empowers individuals 
-              and families to achieve lifelong wellness. We are committed to delivering 
-              high-quality, evidence-based medical care through prevention, early intervention, 
-              and comprehensive management of acute and chronic conditions. We strive to 
-              create a welcoming environment where every patient—including walk-ins, newcomers, 
-              IFHP recipients, and out-of-province visitors—is treated with dignity, respect, 
-              and excellence. Through collaboration, innovation, and community partnership, 
-              we aim to improve health outcomes, support healthier lifestyles, and build 
-              stronger, healthier communities.
-            </span>
-
-            <a
-              href={`tel:${OfficeNumber}`}
-              className="mt-6 inline-flex items-center gap-3  bg-main px-8 py-4 text-lg font-semibold text-white transition hover:opacity-90"
-            >
-              <Phone size={20} />
-              Call: {OfficeNumber}
-            </a>
-          </motion.div>
-          
-          <div className="relative">
-            <div className="absolute -left-5 -top-5 hidden h-44 w-44 rounded-2xl bg-main lg:block" />
-
-            <div className="relative overflow-hidden rounded-3xl bg-white shadow-2xl shadow-black/10">
-              <Image
-                src={clinicImage3}
-                alt="Olympic Park Clinic building"
-                className="h-50 w-full object-cover sm:h-75 lg:h-110"
-                priority
-              />
-            </div>
           </div>
         </div>
       </section>
-
-      <section className="bg-white px-4 py-16 sm:px-6 lg:px-12 lg:py-14">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-3xl text-center">
-            <h2 className="text-4xl font-black tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
-              We <span className="text-main">Welcome You</span>
-            </h2>
-
-            <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
-              We are committed to making healthcare accessible and convenient for
-              everyone in our community.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {patientCards.map(({ title, description, icon: Icon }, index) => (
-              <motion.article
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                viewport={{ once: true, amount: 0.3 }}
-                key={title}
-                className="flex min-h-65 flex-col items-center justify-center rounded-3xl border border-main/25 bg-main-lightest px-6 py-10 text-center shadow-lg shadow-main/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-main/10"
-              >
-                <div className="flex h-20 w-20 items-center justify-center rounded-xl bg-main shadow-lg shadow-main/25">
-                  <Icon className="text-white" size={42} strokeWidth={1.8} />
-                </div>
-
-                <h3 className="mt-8 text-2xl font-black leading-tight text-neutral-950">
-                  {title}
-                </h3>
-
-                <p className="mt-5 max-w-sm text-base leading-8 text-neutral-600">
-                  {description}
-                </p>
-              </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-main-lightest px-4 py-16 sm:px-6 lg:px-12 lg:py-4">
-        <div className="mx-auto max-w-7xl">
-          <div className="mx-auto max-w-3xl text-center">
-
-            <h2 className="mt-6 text-4xl font-black tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
-              Comprehensive <br/><span className="text-main">Care for You</span>
-            </h2>
-
-            <p className="mx-auto mt-3 max-w-2xl text-lg leading-8 text-neutral-600">
-              We offer a wide range of medical services to support your health and
-              well-being at every stage of life.
-            </p>
-          </div>
-          <ServicesSection limit={6} />
-
-          <div className="flex justify-center items-center">
-            <Link
-              href="/services"
-              className="mt-6 inline-flex items-center gap-3 bg-main px-8 py-4 text-lg font-semibold text-white transition hover:opacity-90"
-            >
-              All Services
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-white px-4 py-20 lg:px-12">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center">
-            <h2 className="text-4xl font-black tracking-tight text-neutral-950 md:text-6xl">
-              Family Doctors Accepting{" "}
-              <span className="text-main">
-                New Patients
-              </span>
-            </h2>
-
-            <p className="mt-8 text-2xl font-semibold text-neutral-900">
-              Looking for a family doctor in Calgary?
-            </p>
-
-            <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-neutral-600">
-              Our caring male and female doctors are accepting new patients in Calgary
-              for long term, comprehensive care. Get matched with a doctor who
-              listens, understands, and builds lasting relationships with your family.
-            </p>
-          </div>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {highlights.map(({ title, description, icon: Icon }, index) => (
-              <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: index * 0.08 }}
-                viewport={{ once: true, amount: 0.3 }}
-                key={title}
-                className="rounded-3xl border border-main/20 bg-white p-8 text-center shadow-lg shadow-main/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
-              >
-                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-xl bg-main">
-                  <Icon className="text-white" size={34} />
-                </div>
-
-                <h3 className="mt-8 text-3xl font-bold text-neutral-950">
-                  {title}
-                </h3>
-
-                <p className="mt-5 text-lg leading-8 text-neutral-600">
-                  {description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-28 text-center">
-            <h2 className="text-4xl font-black tracking-tight text-neutral-950 md:text-6xl">
-              Meet{" "}
-              <span className="text-main">
-                Our Doctors
-              </span>
-            </h2>
-
-            <p className="mx-auto mt-6 max-w-4xl text-lg leading-8 text-neutral-600">
-              Our diverse team of family doctors provides good care.
-              Each doctor brings years of experience in family medicine, chronic
-              condition management, and preventive health.
-            </p>
-          </div>
-
-          <DoctorCard doctors={doctors}/>
-
-          <div className="mt-14 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href={`tel:${OfficeNumber}`}
-              className="inline-flex items-center gap-3 bg-main px-8 py-4 text-lg font-semibold text-white transition hover:opacity-90"
-            >
-              <Phone size={20} />
-              Call: {OfficeNumber}
-            </a>
-
-            <Link
-              href="/meet-our-doctors"
-              className="inline-flex items-center gap-3 border-2 border-main px-8 py-4 text-lg font-semibold text-main transition hover:bg-main hover:text-white"
-            >
-              Meet Our Doctors
-              <ArrowRight size={20} />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-main-lightest px-4 py-10 lg:px-12">
-        <h2 className="text-5xl text-center mb-8 font-bold">
-          Find Us <span className="text-main">& Hours</span>
-        </h2>
-        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
-          <div className="overflow-hidden">
-            <iframe
-              title="Primara Olympic Park Pharmacy Location"
-              src={mapUrl}
-              className="h-130 w-full border-0 rounded-2xl"
-              loading="lazy"
-              allowFullScreen
-            />
-          </div>
-
-          <div className="flex justify-start items-start flex-col">
-            <div className="flex gap-6">
-              <MapPin size={30} className="text-main mt-1"/>
-              <div className="flex flex-col justify-center items-start">
-                <span className="text-3xl font-semibold">Address</span>
-                <span className="text-lg font-normal">
-                  34 Canada Olympic Common SW, <br/>Calgary, AB T3H 6K4
-                </span>
-              </div>
-            </div>
-            <div className="flex gap-6 my-4">
-              <Clock size={30} className="text-main mt-1" />
-              <div className="flex flex-col justify-center items-start">
-                <span className="text-3xl font-semibold">Hours</span>
-                <p className="flex items-start gap-3 text-lg">
-                  <span>{monFriHrs}</span>
-                </p>
-                <p className="text-lg">{saturdayHrs}</p>
-                <p className="text-lg">{sundayHrs}</p>
-                <p className="text-lg">Holidays: Closed</p>
-              </div>
-            </div>
-            <div className="flex gap-6 mb-4 justify-center">
-              <PhoneCall size={30} className="text-main mt-1" />
-              <div className="flex flex-col justify-center items-start">
-                <span className="text-3xl font-semibold">Phone</span>
-                <span className="text-lg font-normal">{OfficeNumber}</span>
-              </div>
-            </div>
-
-            <div className="mt-4 flex flex-col items-start justify-start gap-4">
-              <a
-                href={`tel:${OfficeNumber}`}
-                className="inline-flex items-center gap-3  bg-main px-8 py-4 text-lg font-semibold text-white transition hover:opacity-90"
-              >
-                <Phone size={20} />
-                Call: {OfficeNumber}
-              </a>
-
-              <a
-                href={directionsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 border-2 border-main px-8 py-4 text-lg font-semibold text-main transition hover:bg-main hover:text-white"
-              >
-                Get Directions
-                <ArrowUpRight size={20} />
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
     </main>
   )
 }

@@ -22,12 +22,12 @@ import {
 } from "lucide-react";
 
 import clinicImage from "@/public/primara_2.jpeg";
-import doctorsImage from "@/public/clinic-hero.png";
+import DoctorsSection from "@/components/DoctorsSection";
 
 const steps = [
   {
     number: "1",
-    title: "Call 587-391-8188",
+    title: "Call 403-900-5551",
     description:
       "Extension 4. Follow the instructions to register with a family doctor.",
     icon: Phone,
@@ -46,15 +46,6 @@ const steps = [
       "Our team will reach out as soon as possible to connect you with a family doctor of your choice.",
     icon: UserCheck,
   },
-];
-
-const benefits = [
-  "Accepting new patients",
-  "Open 7 days a week",
-  "Walk-ins welcome",
-  "Male and female doctors",
-  "Multiple languages",
-  "Convenient Calgary location",
 ];
 
 const services = [
@@ -116,16 +107,13 @@ export default function FamilyDoctor() {
           className="mx-auto max-w-7xl items-center gap-14"
         >
           <div className="flex justify-center items-center flex-col">
-            <span className="inline-flex rounded-full bg-main/10 px-4 py-2 text-sm font-bold uppercase tracking-wider text-main">
-              Accepting New Patients
-            </span>
 
-            <h1 className="mt-4 max-w-3xl text-center text-4xl font-black  text-neutral-950 sm:text-5xl lg:text-6xl">
+            <h1 className="mt-4 max-w-3xl text-center text-4xl font-black  text-main sm:text-5xl lg:text-6xl leading-[1.05]">
               Family Doctors in Calgary Accepting{" "}
-              <span className="text-main">New Patients Now</span>
+              <span className="text-main-light">New Patients Now</span>
             </h1>
 
-            <p className="mt-4 text-2xl font-semibold text-neutral-800 text-center">
+            <p className="mt-4 text-2xl font-semibold text-main text-center">
               Male and Female Family Doctors
             </p>
 
@@ -138,7 +126,7 @@ export default function FamilyDoctor() {
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-3  bg-main px-7 py-4 font-semibold text-white transition hover:opacity-90"
+                className="rounded-xl inline-flex items-center justify-center gap-3  bg-main px-7 py-4 font-semibold text-white transition hover:opacity-90"
               >
                 Walk In Now
                 <ArrowUpRight size={20} />
@@ -146,7 +134,7 @@ export default function FamilyDoctor() {
 
               <a
                 href={`tel:${OfficeNumber}`}
-                className="inline-flex items-center justify-center gap-3  border-2 border-main px-7 py-4 font-semibold text-main transition hover:bg-main hover:text-white"
+                className="rounded-xl inline-flex items-center justify-center gap-3  border-2 border-main px-7 py-4 font-semibold text-main transition hover:bg-main hover:text-white"
               >
                 <Phone size={20} />
                 Call: {OfficeNumber}
@@ -154,81 +142,6 @@ export default function FamilyDoctor() {
             </div>
           </div>
         </motion.div>
-      </section>
-
-      <section className="bg-[#f8fbff] px-4 py-20 sm:px-6 lg:px-12">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
-          <div className="relative">
-            <div className="absolute -left-5 -top-5 h-full w-full rounded-3xl bg-main/10" />
-
-            <div className="relative overflow-hidden rounded-3xl bg-white shadow-xl shadow-main/10">
-              <Image
-                src={clinicImage}
-                alt="Olympic Park Clinic"
-                className="h-105 w-full object-cover"
-              />
-            </div>
-          </div>
-
-          <div>
-            <h2 className="text-4xl font-black leading-tight text-neutral-950 sm:text-5xl">
-              Your Family’s Health,{" "}
-              <span className="text-main">In Good Hands</span>
-            </h2>
-
-            <p className="mt-6 text-lg leading-8 text-neutral-600">
-              Finding a doctor who truly listens should not be difficult. Our
-              experienced family doctors provide continuous care focused on your
-              medical history, lifestyle, and long-term health goals.
-            </p>
-
-            <p className="mt-5 text-lg font-semibold leading-8 text-neutral-800">
-              We are accepting new patients from across Calgary, including
-              adults, seniors, and children.
-            </p>
-
-            <a
-              href={`tel:${OfficeNumber}`}
-              className="mt-8 inline-flex items-center gap-3 bg-main px-7 py-4 font-semibold text-white transition hover:opacity-90"
-            >
-              <Phone size={20} />
-              Call: {OfficeNumber}
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 py-20 sm:px-6 lg:px-12">
-        <div className="mx-auto grid max-w-7xl items-center gap-14 lg:grid-cols-2">
-          <div>
-            <h2 className="text-4xl font-black leading-tight text-neutral-950 sm:text-5xl">
-              Why Choose{" "}
-              <span className="text-main">Primara Olympic Park Clinic</span>
-            </h2>
-
-            <div className="mt-8 space-y-4">
-              {benefits.map((item) => (
-                <div key={item} className="flex items-start gap-4">
-                  <span className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-main/10">
-                    <Check className="text-main" size={18} />
-                  </span>
-
-                  <p className="text-lg font-medium text-neutral-800">
-                    {item}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="overflow-hidden rounded-3xl border border-main/15 bg-white p-3 shadow-xl shadow-main/10">
-            <Image
-              src={clinicImage}
-              alt="Clinic location"
-              className="h-105 w-full rounded-2xl object-cover"
-            />
-          </div>
-        </div>
       </section>
 
       <section className="bg-[#f8fbff] px-4 py-10 sm:px-6 lg:px-12">
@@ -245,119 +158,19 @@ export default function FamilyDoctor() {
             </p>
           </div>
 
-          <div className="mx-auto max-w-7xl">
-            <div className='md:hidden'>
-              <Swiper
-                spaceBetween={24}
-                slidesPerView={1}
-                keyboard={{ enabled: true }}
-                navigation
-                modules={[Navigation, Keyboard]}
-                className="w-full pb-12 [&_.swiper-slide]:h-auto [&_.swiper-slide]:flex mt-10"
-                breakpoints={{
-                  640: {
-                    slidesPerView: 2,
-                    spaceBetween: 24,
-                  },
-                  1024: {
-                    slidesPerView: 3,
-                    spaceBetween: 28,
-                  },
-                }}
-              >
-                {doctors.map((doctor, index) => (
-                  <SwiperSlide key={index} className="h-auto mb-12">
-                    <motion.article 
-                      initial={{ opacity: 0, y: 24 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.45, delay: index * 0.08 }}
-                      viewport={{ once: true, amount: 0.3 }}
-                      className="overflow-hidden rounded-3xl bg-white border border-main/20 shadow-xl shadow-main/10 transition-all duration-300 hover:-translate-y-1">
-                      <div className="relative h-95">
-                        <Image
-                          src={doctor.image || logo}
-                          alt={doctor.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-
-                      <div className="p-6">
-                        <p className="text-sm font-medium text-neutral-500">
-                          {doctor.role}
-                        </p>
-
-                        <div>
-                          <h3 className="mt-2 text-2xl font-bold text-neutral-950">
-                            {doctor.name}
-                          </h3>
-
-                          <span className="text-neutral-500">
-                            {doctor.qualification}
-                          </span>
-                        </div>
-
-                        <p className="mt-4 font-medium text-main">
-                          {doctor.status}
-                        </p>
-                      </div>
-                    </motion.article>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
-            <div className="hidden md:grid xl:grid-cols-3 md:grid-cols-2 gap-8 mt-10">
-              {doctors.map((doctor, index) => (
-                <motion.article 
-                  key={index}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.45, delay: index * 0.08 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="overflow-hidden rounded-3xl bg-white border border-main/20 shadow-xl shadow-main/10 transition-all duration-300 hover:-translate-y-1"
-                >
-                  <div className="relative h-95">
-                    <Image
-                      src={logo}
-                      alt={doctor.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="p-6">
-                    <p className="text-sm font-medium text-neutral-500">
-                      {doctor.role}
-                    </p>
-
-                    <div>
-                      <h3 className="mt-2 text-2xl font-bold text-neutral-950">
-                        {doctor.name}
-                      </h3>
-
-                      <span className="text-neutral-500">
-                        {doctor.qualification}
-                      </span>
-                    </div>
-
-                    <p className="mt-4 font-medium text-main">
-                      {doctor.status}
-                    </p>
-                  </div>
-                </motion.article>
-              ))}
+          <div className="mx-auto w-full">
+            <div>
+              <motion.article 
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.45, delay: 0.08 }}
+                viewport={{ once: true, amount: 0.3 }}
+                className="overflow-hidden rounded-3xl bg-white transition-all duration-300 hover:-translate-y-1">
+                <DoctorsSection />
+              </motion.article>
             </div>
           </div>
 
-          <div className="mt-12 flex justify-center">
-            <a
-              href={`tel:${OfficeNumber}`}
-              className="inline-flex items-center gap-3 bg-main px-8 py-4 font-semibold text-white transition hover:opacity-90"
-            >
-              <Phone size={20} />
-              Call: {OfficeNumber}
-            </a>
-          </div>
         </div>
       </section>
 
@@ -429,8 +242,8 @@ export default function FamilyDoctor() {
               Easy & Fast
             </span>
 
-            <h2 className="mt-6 text-4xl font-black tracking-tight text-neutral-950 sm:text-5xl lg:text-6xl">
-              How to <span className="text-main">Register</span>
+            <h2 className="mt-6 text-4xl font-black tracking-tight text-main sm:text-5xl lg:text-6xl">
+              How to <span className="text-main-light">Register</span>
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-neutral-600">
@@ -475,16 +288,6 @@ export default function FamilyDoctor() {
                 </article>
               </div>
             ))}
-          </div>
-
-          <div className="mt-14 flex justify-center">
-            <a
-              href={`tel:${OfficeNumber}`}
-              className="inline-flex items-center justify-center gap-3 bg-main px-10 py-4 text-lg font-bold text-white shadow-lg shadow-main/20 transition hover:-translate-y-0.5 hover:opacity-90"
-            >
-              <Phone size={22} />
-              Call: {OfficeNumber}
-            </a>
           </div>
         </div>
       </section>

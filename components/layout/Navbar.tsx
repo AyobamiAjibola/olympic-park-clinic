@@ -1,36 +1,38 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowDown, ArrowUp, Calendar, ChevronDown, Menu, Phone, X } from "lucide-react";
+import { Calendar, MapPin, Menu, Phone, X } from "lucide-react";
 import { NavLink } from "@/components/common/NavLink";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logo from "@/public/logo.png"
+import logo from "@/public/main_logo2.png"
 import Image from "next/image";
 import { BOOKING_LINK, OfficeNumber } from "@/constants/helper";
-import { usePathname } from "next/navigation";
 
 const links = [
-  { to: "/", label: "Home" },
-  { 
-    label: "Family Doctor", 
-    children: [
-      { label: "Family Doctors Accepting New Patients", to: "/family-doctor-accepting-new-patients" },
-      { label: "Female Family Doctor", to: "/female-family-doctor" },
-      { label: "Meet Our Doctors", to: "/meet-our-doctors" }
-    ],
-  },
   { to: "/services", label: "Services" },
-  { to: "/contact", label: "Contact" },
+  { to: "/doctors", label: "Our Doctors" },
+  { to: "/contact", label: "Contact Us" },
+  { to: "/about", label: "About" },
 ];
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const pathname = usePathname();
-  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
 
   return (
     <header className="sticky top-0 z-50 w-full">
+      <div className="bg-main p-2 flex justify-between items-center">
+        <div className="items-center gap-1 md:flex hidden flex-row">
+          <MapPin color="white" size={16}/>
+          <span className="text-white text-xs font-medium">
+            Proudly serving Southwest Calgary
+          </span>
+        </div>
+
+        <span className="text-white text-xs font-medium">
+          New patient welcome | Direct Billing 
+        </span>
+      </div>
       <nav className="relative flex z-50 h-20 w-full items-center justify-between px-2 lg:px-6 border-b border-slate-200/80 bg-white/80 backdrop-blur">
         <NavLink
           href="/"
@@ -40,97 +42,42 @@ const Navbar = () => {
             <Image
               alt="logo"
               src={logo}
-              className="md:h-16 md:w-18 h-10 w-12"
+              className="md:h-14 md:w-40 h-12 w-36"
             />
-            <div className="flex items-start flex-col justify-start">
-              <span
-                className="text-main font-bold md:text-xl text-lg"
-              >Primara</span>
-              <span className="md:text-sm text-xs">OLYMPIC PARK CLINIC</span>
-            </div>
           </div>
         </NavLink>
 
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((link, key) => (
             <li key={key} className="relative group">
-              {
-                link.children ? (
-                  <>
-                    <button
-                      className={`relative inline-flex items-end text-lg font-medium cursor-pointer transition-colors
-                        after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-full
-                        after:-translate-x-1/2 after:bg-blue-400
-                        after:transition-transform after:duration-300
-                        ${
-                          pathname === "/family-doctor" ||
-                          pathname === "/female-family-doctor" ||
-                          pathname === "/meet-our-doctors"
-                            ? "font-semibold after:scale-x-100"
-                            : "after:scale-x-0 hover:after:scale-x-100"
-                        }
-                      `}
-                    >
-                      {link.label}
-                      <ChevronDown size={24} />
-                    </button>
-                    <ul 
-                      className="absolute left-0 top-full z-999 hidden w-96 rounded-lg bg-blue-50 px-6 py-4 shadow-lg group-hover:block"
-                    >
-                      {link.children.map((child, index) => (
-                        <li key={index}
-                          className={`group relative py-2`}
-                        >
-                          <NavLink
-                            href={child.to}
-                            exact={link.to === "/"}
-                            className="
-                              relative block text-lg font-medium w-full py-2
-                              transition-colors after:absolute after:bottom-0 
-                              after:left-1/2 after:h-0.5 after:w-full 
-                              after:-translate-x-1/2 after:scale-x-0 after:bg-blue-400 
-                              after:transition-transform after:duration-300
-                              hover:after:scale-x-100
-                            "
-                            activeClassName="font-semibold after:scale-x-100"
-                          >
-                            {child.label}
-                          </NavLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
-                ) : (
-                  <NavLink
-                    href={link.to}
-                    exact={link.to === "/"}
-                    className="
-                      relative inline-block text-lg font-medium 
-                      transition-colors after:absolute after:bottom-0 
-                      after:left-1/2 after:h-0.5 after:w-full 
-                      after:-translate-x-1/2 after:scale-x-0 after:bg-blue-400 
-                      after:transition-transform after:duration-300
-                      hover:after:scale-x-100
-                    "
-                    activeClassName="font-semibold after:scale-x-100"
-                  >
-                    {link.label}
-                  </NavLink>
-                )
-              }
+              <NavLink
+                href={link.to}
+                exact={link.to === "/"}
+                className="
+                  relative inline-block text-[16px] font-medium 
+                  transition-colors after:absolute after:bottom-0 
+                  after:left-1/2 after:h-0.5 after:w-full 
+                  after:-translate-x-1/2 after:scale-x-0 after:bg-blue-400 
+                  after:transition-transform after:duration-300
+                  hover:after:scale-x-100
+                "
+                activeClassName="font-semibold after:scale-x-100"
+              >
+                {link.label}
+              </NavLink>
             </li>
           ))}
         </ul>
 
         <div className="hidden md:block">
-          <Button className="rounded-lg bg-main py-5 w-auto cursor-pointer"
+          <Button className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
             onClick={() =>
               window.open(BOOKING_LINK, "_blank")
             }
           >
             <Calendar color="white"/>
             <span className="text-white text-base">
-              Book
+              Book Appointment
             </span>
           </Button>
         </div>
@@ -154,87 +101,24 @@ const Navbar = () => {
         <ul className="flex flex-col gap-1 px-6 py-4">
           {links.map((link, index) => (
             <li key={index} className="relative group">
-              {
-                link.children ? (
-                  <div className="flex justify-center items-center flex-col">
-                    <button
-                      onClick={() =>
-                        setOpenMobileDropdown(
-                          openMobileDropdown === link.label ? null : link.label
-                        )
-                      }
-                      className={`relative inline-flex items-end text-lg font-medium cursor-pointer transition-colors
-                        after:absolute after:bottom-0 after:left-1/2 after:h-0.5 after:w-full
-                        after:-translate-x-1/2 after:bg-blue-400 text-center
-                        after:transition-transform after:duration-300 w-full
-                        ${
-                          pathname === "/family-doctor" ||
-                          pathname === "/female-family-doctor" ||
-                          pathname === "/meet-our-doctors"
-                            ? "font-semibold after:scale-x-100"
-                            : "after:scale-x-0 hover:after:scale-x-100"
-                        }
-                    mt-2`}
-                    >
-                      <span className="ml-26 mr-2">{link.label}</span>
-                      {openMobileDropdown === link.label ? (
-                        <ArrowUp size={20} className="mb1"/>
-                        ) : (
-                          <ArrowDown size={20} className="mb-1"/>
-                        )
-                      }
-                    </button>
-                    {openMobileDropdown === link.label && (
-                      <ul className='mt-3 flex w-[90%] flex-col rounded-lg py-2 shadow-lg'>
-                          {link.children.map((child, index) => (
-                            <li key={index}
-                              className={`py-2`}
-                            >
-                              <NavLink
-                                href={child.to}
-                                onClick={() => {
-                                  setOpen(false);
-                                  setOpenMobileDropdown(null);
-                                }}
-                                // exact={link.to === "/"}
-                                className="
-                                  relative block text-base font-medium w-full py-2
-                                  transition-colors after:absolute after:bottom-0 
-                                  after:left-1/2 after:h-0.5 after:w-full 
-                                  after:-translate-x-1/2 after:scale-x-0 after:bg-blue-400 
-                                  after:transition-transform after:duration-300
-                                  hover:after:scale-x-100
-                                "
-                                activeClassName="font-semibold bg-neutral-100"
-                              >
-                                {child.label}
-                              </NavLink>
-                            </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ) : (
-                  <NavLink
-                    href={link.to}
-                    exact={link.to === "/"}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-md px-3 py-2 text-lg font-medium 
-                    text-muted-foreground hover:bg-accent
-                      text-center
-                      relative
-                      transition-colors after:absolute after:bottom-0 
-                      after:left-1/2 after:h-0.5 after:w-full 
-                      after:-translate-x-1/2 after:scale-x-0 after:bg-blue-400 
-                      after:transition-transform after:duration-300
-                      hover:after:scale-x-100
-                    "
-                    activeClassName="font-semibold after:scale-x-100"
-                  >
-                    {link.label}
-                  </NavLink>
-                )
-              }
+              <NavLink
+                href={link.to}
+                exact={link.to === "/"}
+                onClick={() => setOpen(false)}
+                className="block rounded-md px-3 py-2 text-lg font-medium 
+                text-muted-foreground hover:bg-accent
+                  text-center
+                  relative
+                  transition-colors after:absolute after:bottom-0 
+                  after:left-1/2 after:h-0.5 after:w-full 
+                  after:-translate-x-1/2 after:scale-x-0 after:bg-blue-400 
+                  after:transition-transform after:duration-300
+                  hover:after:scale-x-100
+                "
+                activeClassName="font-semibold after:scale-x-100"
+              >
+                {link.label}
+              </NavLink>
             </li>
           ))}
 

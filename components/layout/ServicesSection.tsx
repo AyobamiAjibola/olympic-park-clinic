@@ -10,116 +10,78 @@ import {
   Pill,
   HardHat,
   Car,
+  Users2,
+  Bandage,
+  ClipboardList,
+  CirclePlus,
 } from "lucide-react";
 import { motion } from "motion/react";
 
 const services = [
   {
-    title: "Acute & chronic disease management",
-    description:
-      "Expert care for short-term illnesses and long-term health conditions.",
+    title: "Care for all ages",
+    description: "Newborns, children, adults and seniors.",
+    icon: Users2,
+    bullets: [
+      "Newborn and infant care",
+      "Children and adolescent care",
+      "Adult healthcare",
+      "Senior healthcare",
+    ],
+  },
+  {
+    title: "Preventive care",
+    description: "Check-ups, screenings and immunizations.",
+    icon: HeartPulse,
+    bullets: [
+      "Routine health check-ups",
+      "Health screenings",
+      "Immunizations",
+      "Preventive health advice",
+    ],
+  },
+  {
+    title: "Chronic disease management",
+    description: "Diabetes, hypertension and more.",
     icon: Stethoscope,
     bullets: [
-      "Diagnosis and treatment",
-      "Chronic condition management",
+      "Diabetes management",
+      "Hypertension management",
       "Ongoing monitoring",
       "Personalized care plans",
     ],
   },
   {
-    title: "Preventive healthcare & lifestyle advice",
-    description:
-      "Helping you stay healthy through prevention and informed lifestyle choices.",
-    icon: HeartPulse,
+    title: "Acute illness care",
+    description: "Same-day assessment and treatment.",
+    icon: Bandage,
     bullets: [
-      "Health risk assessments",
-      "Nutrition and exercise advice",
-      "Vaccinations",
-      "Lifestyle counselling",
+      "Same-day assessments",
+      "Diagnosis and treatment",
+      "Minor illness care",
+      "Follow-up care",
     ],
   },
   {
-    title: "Mental health care",
-    description:
-      "Compassionate support for your mental and emotional well-being.",
-    icon: Brain,
+    title: "Women's health",
+    description: "Reproductive and lifestyle care.",
+    icon: ClipboardList,
     bullets: [
-      "Anxiety and depression support",
-      "Stress management",
-      "Mental health assessments",
-      "Referrals to specialists",
-    ],
-  },
-  {
-    title: "Routine antenatal care",
-    description:
-      "Comprehensive care for a healthy pregnancy and peace of mind.",
-    icon: Baby,
-    bullets: [
-      "Prenatal checkups",
-      "Baby development monitoring",
-      "Nutrition guidance",
-      "Pregnancy education",
-    ],
-  },
-  {
-    title: "Women’s & reproductive health",
-    description:
-      "Personalized care for every stage of a woman’s health journey.",
-    icon: Venus,
-    bullets: [
+      "Reproductive health",
       "Menstrual health",
       "Family planning",
-      "Menopause support",
-      "Gynecological care",
+      "Lifestyle care",
     ],
   },
   {
-    title: "Annual health checks",
-    description:
-      "Stay on top of your health with regular checkups and early detection.",
-    icon: ClipboardPlus,
+    title: "Minor procedures",
+    description: "Skin, joint and other in-office procedures.",
+    icon: CirclePlus,
     bullets: [
-      "Physical examinations",
-      "Health screenings",
-      "Blood work and lab tests",
-      "Early risk detection",
-    ],
-  },
-  {
-    title: "Medication refills",
-    description:
-      "Easy and convenient prescription refill services to keep you on track.",
-    icon: Pill,
-    bullets: [
-      "Prescription renewals",
-      "Medication reviews",
-      "Dosage adjustments",
-      "Pharmacy coordination",
-    ],
-  },
-  {
-    title: "Workplace injury (WCB care)",
-    description:
-      "Specialized care for work-related injuries and return-to-work support.",
-    icon: HardHat,
-    bullets: [
-      "Injury assessment",
-      "WCB documentation",
-      "Rehabilitation support",
-      "Return-to-work planning",
-    ],
-  },
-  {
-    title: "Driver’s medical examinations",
-    description:
-      "Certified medical exams for licensing and road safety compliance.",
-    icon: Car,
-    bullets: [
-      "Class 1, 2, 3 and 4 exams",
-      "Commercial driver exams",
-      "Vision and health assessments",
-      "Official medical reports",
+      "Skin procedures",
+      "Joint procedures",
+      "Minor in-office treatments",
+      "Follow-up care",
     ],
   },
 ];

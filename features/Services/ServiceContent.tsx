@@ -14,24 +14,6 @@ import { ServicesSection } from "@/components/layout/ServicesSection";
 import { OfficeNumber } from "@/constants/helper";
 import Link from "next/link";
 
-const highlights = [
-  {
-    title: "Accepting New Patients",
-    description: "Register with our experienced family physicians.",
-    icon: UserRoundPlus,
-  },
-  {
-    title: "Walk In Available",
-    description: "Get care when you need it without waiting weeks.",
-    icon: Clock,
-  },
-  {
-    title: "Family Focused Care",
-    description: "Healthcare for children, adults, and seniors.",
-    icon: Users,
-  },
-];
-
 export default function ServiceContent() {
   return (
     <main className="bg-white">
@@ -41,15 +23,11 @@ export default function ServiceContent() {
 
         <div className="relative mx-auto grid max-w-7xl items-start gap-12 lg:grid-cols-2">
           <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-main shadow-sm">
-              <HeartPulse className="h-5 w-5" />
-              Primara Olympic Park Clinic
-            </div>
 
-            <h1 className="text-4xl font-black leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
               Medical Services
               <br />
-              <span className="text-main">Designed Around You</span>
+              <span className="text-main-light">Designed Around You</span>
             </h1>
 
             <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
@@ -57,24 +35,6 @@ export default function ServiceContent() {
               chronic disease management, our team provides compassionate,
               patient centred healthcare for every stage of life.
             </p>
-
-            <div className="mt-8 grid gap-4 sm:grid-cols-3">
-              {highlights.map(({ title, description, icon: Icon }) => (
-                <div
-                  key={title}
-                  className="rounded-2xl border border-main/10 bg-white p-5 shadow-sm"
-                >
-                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-main text-white">
-                    <Icon className="h-6 w-6" />
-                  </div>
-
-                  <h3 className="font-bold text-slate-950">{title}</h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-600">
-                    {description}
-                  </p>
-                </div>
-              ))}
-            </div>
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
@@ -94,7 +54,7 @@ export default function ServiceContent() {
             </div>
           </div>
 
-          <div className="rounded-4xl border border-main/10 bg-white p-6 shadow-2xl shadow-blue-950/10">
+          <div className="rounded-4xl bg-main/5 p-6 ">
             <div className="rounded-3xl bg-main p-8 text-white">
               <p className="text-sm font-bold uppercase tracking-[0.25em] text-white/70">
                 Patient Care
@@ -126,28 +86,6 @@ export default function ServiceContent() {
                 ))}
               </div>
             </div>
-
-            <div className="mt-5 grid grid-cols-2 gap-4">
-              <div className="rounded-2xl bg-[#f4f8ff] p-5">
-                <CalendarCheck className="h-8 w-8 text-main" />
-                <h3 className="mt-4 font-bold text-slate-950">
-                  Same Day Care
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Get help when you need it.
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-[#f4f8ff] p-5">
-                <ShieldCheck className="h-8 w-8 text-main" />
-                <h3 className="mt-4 font-bold text-slate-950">
-                  Trusted Care
-                </h3>
-                <p className="mt-2 text-sm text-slate-600">
-                  Care focused on your wellbeing.
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -155,11 +93,11 @@ export default function ServiceContent() {
       <section id="services" className="px-5 py-20 lg:px-16">
         <div className="mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-bold uppercase tracking-[0.25em] text-main">
+            <p className="text-sm font-bold uppercase tracking-[0.25em] text-main-light">
               Our Services
             </p>
 
-            <h2 className="mt-4 text-4xl font-black text-slate-950 sm:text-5xl">
+            <h2 className="mt-4 text-4xl font-black text-main sm:text-5xl">
               Complete Care for Your Family
             </h2>
 

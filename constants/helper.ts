@@ -11,24 +11,36 @@ export const directionsUrl =
 export const monFriHrs = "Monday - Friday: 9:00 AM — 7:00 PM"
 export const sundayHrs = "Sunday: Closed"
 export const saturdayHrs = "Saturday: 10:00 AM — 4:00 PM"
-export const BOOKING_LINK = "https://calendar.app.google/7gFJ3sWD1gccBtr38";
+export const BOOKING_LINK = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2X4MccODHuNnKEe-1sL5ieOGHm1leIg8gBX2lABz1ndnXCdkiqZmDdjlTLqzlUTIJggJuKQNlF";
 
 export const doctors = [
   {
+    id: 1,
+    initials: "JE",
     name: "Dr. Jacob Eze",
     role: "Family Physician",
     status: "Accepting New Patients",
     qualification: "(MD, MRCGP, LMCC, CCFP)",
     image: "",
-    gender: "male"
+    gender: "male",
+    shortDescription:
+      "Dr. Eze is committed to providing compassionate, evidence-based care for individuals and families in Southwest Calgary.",
+    description: "",
+    href: "",
   },
   {
+    id: 2,
+    initials: "LA",
     name: "Dr. Lynder Alole",
     role: "Family Physician",
     status: "Accepting New Patients",
     qualification: "(MBBS, FWACP, CCFP)",
     image: "",
-    gender: "female"
+    gender: "female",
+    shortDescription:
+      "Dr. Alole believes in building lasting relationships with her patients and supporting them through every stage of life.",
+    description: "",
+    href: "",
   }
 ];
 
@@ -265,5 +277,24 @@ export const getStoreStatus_ = () => {
     isOpen: false,
     message: `Opens ${dayName} at ${nextHours.openText}`,
   };
+};
+
+export const getTodayHours = (): string => {
+  const day = new Date().getDay();
+
+  // Sunday = 0
+  // Monday = 1
+  // ...
+  // Saturday = 6
+
+  if (day >= 1 && day <= 5) {
+    return "9:00 AM - 7:00 PM";
+  }
+
+  if (day === 6) {
+    return "10:00 AM - 4:00 PM";
+  }
+
+  return "Closed";
 };
 

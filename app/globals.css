@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
 }
 
 @theme inline {
@@ -11,9 +13,9 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-main: #205090;
-  --color-main-light: #20A0D0;
+  --color-main-light: #0D93AF;
   --color-main-lighter: #40B8E8;
-  --color-main-lightest: #f5f9ff;
+  --color-main-lightest: #E7F8FC;
   --font-script: var(--font-allura);
 }
 
@@ -23,9 +25,22 @@
     --foreground: #ededed;
   }
 } */
+ .feature-track {
+  animation: feature-slide 20s linear infinite;
+}
+
+@keyframes feature-slide {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", sans-serif;
 }
