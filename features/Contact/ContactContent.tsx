@@ -25,6 +25,7 @@ export default function ContactContent() {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const [errorMsg, setErrorMsg] = useState<string>("");
+  const [reason, setReason] = useState<string>("");
 
   const handleMessageChange = (
     e: React.ChangeEvent<HTMLTextAreaElement>
@@ -80,15 +81,11 @@ export default function ContactContent() {
 
         <div className="relative mx-auto max-w-7xl">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm font-bold text-main shadow-sm">
-              <MessageCircle className="h-5 w-5" />
-              Contact Primara Olympic Park Clinic
-            </div>
 
-            <h1 className="text-4xl font-black leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-black leading-tight text-main sm:text-5xl lg:text-6xl">
               We’re Here to Help
               <br />
-              <span className="text-main">You and Your Family</span>
+              <span className="text-main-light">You and Your Family</span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-600">
@@ -210,12 +207,16 @@ export default function ContactContent() {
                   placeholder="Your first name" 
                   value={fn}
                   setValue={setFn}
+                  required
+                  name="First Name"
                 />
                 <FormInput 
                   label="Last Name" 
                   placeholder="Your last name" 
                   value={ln}
                   setValue={setLn}
+                  required
+                  name="Last Name"
                 />
               </div>
 
@@ -226,12 +227,16 @@ export default function ContactContent() {
                   type="tel"
                   value={phone}
                   setValue={setPhone}
+                  required
+                  name="Phone Number"
                 />
 
                 <FormInput
                   label="Email Address"
                   placeholder="Your email address"
                   type="email"
+                  required
+                  name="Email"
                   value={email}
                   setValue={setEmail}
                 />
@@ -239,12 +244,13 @@ export default function ContactContent() {
 
               <div>
                 <label className="mb-2 block text-sm font-bold text-slate-800">
-                  Reason for Contact
+                  Reason for Contact {" "} <span className="text-red-600 text-xs">*</span>
                 </label>
 
                 <select 
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  value={reason}
+                  name="Reason"
+                  onChange={(e) => setReason(e.target.value)}
                   className="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 text-slate-700 outline-none transition focus:border-main focus:ring-4 focus:ring-main/10"
                 >
                   {contactReasons.map((item) => (
@@ -257,11 +263,12 @@ export default function ContactContent() {
 
               <div>
                 <label className="mb-2 block text-sm font-bold text-slate-800">
-                  Message
+                  Message {" "} <span className="text-red-600 text-xs">*</span>
                 </label>
 
                 <textarea
                   value={message}
+                  name="message"
                   onChange={handleMessageChange}
                   rows={5}
                   placeholder="Write your message here"
@@ -426,18 +433,22 @@ function FormInput({
   placeholder,
   type = "text",
   value,
-  setValue
+  setValue,
+  required=true,
+  name
 }: {
   label: string;
   placeholder: string;
   type?: string;
   value: string;
-  setValue: React.Dispatch<SetStateAction<string>>
+  setValue: React.Dispatch<SetStateAction<string>>;
+  required: boolean;
+  name: string;
 }) {
   return (
     <div>
       <label className="mb-2 block text-sm font-bold text-slate-800">
-        {label}
+        {label} {" "} {required && <span className="text-red-600 text-xs">*</span>}
       </label>
 
       <input
@@ -445,6 +456,8 @@ function FormInput({
         onChange={(e)=>setValue(e.target.value)}
         type={type}
         placeholder={placeholder}
+        required={required}
+        name={name}
         className="h-14 w-full rounded-xl border border-slate-200 bg-white px-4 text-slate-700 outline-none transition focus:border-main focus:ring-4 focus:ring-main/10"
       />
     </div>

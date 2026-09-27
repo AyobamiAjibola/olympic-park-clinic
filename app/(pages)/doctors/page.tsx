@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Keyboard, Navigation } from "swiper/modules";
 import Image from "next/image";
 import logo from "@/public/logo.png";
-import { doctors, OfficeNumber } from "@/constants/helper";
+import { directionsUrl, doctors, OfficeNumber } from "@/constants/helper";
 import { motion } from "motion/react";
 import Link from "next/link";
 import {
@@ -19,6 +19,7 @@ import {
   ChevronRight,
   FileUp,
   UserCheck,
+  MapPin,
 } from "lucide-react";
 import DoctorsSection from "@/components/DoctorsSection";
 
@@ -131,19 +132,22 @@ export default function FamilyDoctor() {
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-              <Link
-                href="/contact"
-                className="rounded-xl inline-flex items-center justify-center gap-3  bg-main px-7 py-4 font-semibold text-white transition hover:opacity-90"
-              >
-                Walk In Now
-                <ArrowUpRight size={20} />
-              </Link>
+              <a 
+                href={directionsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-xl inline-flex items-center justify-center gap-2  bg-main px-7 py-4 font-semibold text-white transition hover:opacity-90">
+                <MapPin color={"white"} />
+                <span className="text-white text-lg font-semibold">
+                  Get Direction
+                </span>
+              </a>
 
               <a
                 href={`tel:${OfficeNumber}`}
-                className="rounded-xl inline-flex items-center justify-center gap-3  border-2 border-main px-7 py-4 font-semibold text-main transition hover:bg-main hover:text-white"
+                className="rounded-xl inline-flex items-center justify-center gap-2 border-2 border-main px-7 py-4 font-semibold text-main transition hover:bg-main hover:text-white"
               >
-                <Phone size={20} />
+                <Phone size={20} className="w-6! h-6!" />
                 Call: {OfficeNumber}
               </a>
             </div>

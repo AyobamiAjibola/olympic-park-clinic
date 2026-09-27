@@ -27,6 +27,7 @@ export const doctors = [
       "Dr. Eze is committed to providing compassionate, evidence-based care for individuals and families in Southwest and Northwest Calgary.",
     description: "",
     href: "",
+    bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2X4MccODHuNnKEe-1sL5ieOGHm1leIg8gBX2lABz1ndnXCdkiqZmDdjlTLqzlUTIJggJuKQNlF"
   },
   {
     id: 2,
@@ -41,6 +42,7 @@ export const doctors = [
       "Dr. Alole believes in building lasting relationships with her patients and supporting them through every stage of life.",
     description: "",
     href: "",
+    bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2X4MccODHuNnKEe-1sL5ieOGHm1leIg8gBX2lABz1ndnXCdkiqZmDdjlTLqzlUTIJggJuKQNlF"
   }
 ];
 

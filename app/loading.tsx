@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "motion/react";
-import logo from "@/public/logo.png";
+import logo from "@/public/main_logo2.png";
 import { Footer } from "@/components/layout/Footer";
 import Navbar from "@/components/layout/Navbar";
 

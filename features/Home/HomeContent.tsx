@@ -17,7 +17,7 @@ import {
   ParkingSquare,
   Clock3,
 } from "lucide-react";
-import {  BOOKING_LINK, directionsUrl, getStoreStatus_, getTodayHours, OfficeNumber } from "@/constants/helper";
+import {  directionsUrl, getStoreStatus_, getTodayHours, OfficeNumber } from "@/constants/helper";
 import { motion } from "motion/react";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -27,9 +27,11 @@ import FeatureCarousel from "@/components/FeatureCarousel";
 import ServiceSection from "@/components/Services";
 import DoctorsSection from "@/components/DoctorsSection";
 import BgFlower from "@/public/bgFlowery.png";
+import { useAtom } from "jotai";
+import { appointments } from "@/lib/atoms";
 
 export default function HomeContent() {
-
+  const [_, setOpenAppointment] = useAtom(appointments)
   const heroTitle = "Thoughtful care"
   const heroTitle2 = "close to home"
   const subTitle = "Compassionate, evidence-based primary care for every stage of life."
@@ -100,9 +102,7 @@ export default function HomeContent() {
 
               <div className="mt-8 flex w-full flex-col">
                 <Button className="flex flex-1 items-center bg-main-light p-4 rounded-xl"
-                  onClick={() =>
-                    window.open(BOOKING_LINK, "_blank")
-                  }
+                  onClick={()=>setOpenAppointment(true)}
                 >
                   <Calendar className="w-5! h-5! shrink-0" color="white"/>
                   <span className="text-white text-lg font-semibold">Book an Appointment</span>
@@ -240,7 +240,7 @@ export default function HomeContent() {
 
           <div className="w-full flex gap-2 mt-12">
             <Button className="flex flex-1 items-center bg-main-light p-6 rounded-xl border border-main-light">
-              <Phone color={"white"}/>
+              <Phone color={"white"} className="h-6! w-6!"/>
               <span className="text-white text-lg font-semibold">
                 {OfficeNumber}
               </span>
@@ -249,7 +249,7 @@ export default function HomeContent() {
               href={directionsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-1 items-center justify-center bg-transparent border border-solid border-main p-2 rounded-xl hover:bg-white/60">
+              className="flex flex-1 items-center gap-2 justify-center bg-transparent border border-solid border-main p-2 rounded-xl hover:bg-white/60">
               <MapPin color={"#205090"} />
               <span className="text-main text-lg font-semibold">
                 Get Direction

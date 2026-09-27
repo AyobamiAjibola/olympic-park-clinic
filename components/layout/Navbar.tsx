@@ -7,7 +7,11 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logo from "@/public/main_logo2.png"
 import Image from "next/image";
-import { BOOKING_LINK, OfficeNumber } from "@/constants/helper";
+import { OfficeNumber } from "@/constants/helper";
+import { useAtom } from "jotai";
+import { appointments } from "@/lib/atoms";
+import Modal from "../Modal";
+import DoctorAvailability from "../DoctorAvailability";
 
 const links = [
   { to: "/services", label: "Services" },
@@ -18,6 +22,7 @@ const links = [
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [openAppointment, setOpenAppointment] = useAtom(appointments)
 
   return (
     <header className="sticky top-0 z-50 w-full">
@@ -71,9 +76,7 @@ const Navbar = () => {
 
         <div className="hidden md:block">
           <Button className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
-            onClick={() =>
-              window.open(BOOKING_LINK, "_blank")
-            }
+            onClick={()=>setOpenAppointment(true)}
           >
             <Calendar color="white"/>
             <span className="text-white text-base">
@@ -122,81 +125,24 @@ const Navbar = () => {
             </li>
           ))}
 
-          <li className="pt-6 text-center">
-            <Button className="rounded-lg bg-main py-5 w-auto cursor-pointer" onClick={() => setOpen(false)}>
-              <Phone color="white"/>
-              <span className="text-white text-base">
-                Call {OfficeNumber}
-              </span>
+          <li className="pt-6 text-center flex justify-center items-center">
+            <Button className="flex flex-1 items-center bg-main-light p-3 rounded-xl h-full"
+              onClick={()=>setOpenAppointment(true)}
+            >
+              <Calendar className="w-5! h-5! shrink-0" color="white"/>
+              <span className="text-white text-lg font-semibold">Book an Appointment</span>
             </Button>
           </li>
         </ul>
       </div>
 
-      {/* {showWalkInStatus && 
-      <div 
-        className="relative z-0 bg-main flex h-auto w-full flex-col gap-6 px-4 py-6 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between lg:h-28 lg:flex-nowrap lg:px-12"
+      <Modal
+        open={openAppointment}
+        onOpenChange={setOpenAppointment}
+        title="Book an Appointment"
       >
-        <div className="flex items-center justify-start gap-4">
-          <span className="relative flex size-6 items-center justify-center ml-2 md:ml-0">
-            <span className={`absolute inline-flex h-full w-full animate-ping rounded-full ${storeStatus.isOpen ? 'bg-green-400' : 'bg-red-400'} opacity-75`} />
-            <span className={`relative inline-flex size-5 rounded-full ${storeStatus.isOpen ? 'bg-green-500' : 'bg-red-500'}`} />
-          </span>
-
-          <div className="flex flex-col items-start justify-start">
-            <p className="text-lg leading-relaxed text-white">
-              Walk-in Live Status
-            </p>
-            <span className="text-3xl font-black leading-tight text-white md:text-3xl">
-              {storeStatus.isOpen ? 'OPEN NOW' : 'CLOSED'}
-            </span>
-          </div>
-        </div>
-
-        <div className="hidden h-[60%] w-px bg-white/20 backdrop-blur lg:block" />
-
-        <div className="hidden md:flex items-start justify-start gap-3">
-          <Clock className="shrink-0 text-white h-8 w-8 md:h-10 md:w-10" />
-          <div>
-            <p className="text-sm leading-relaxed text-white md:text-lg">
-              Short Wait
-            </p>
-            <p className="text-sm leading-tight text-white md:text-lg">
-              Walk-in anytime
-            </p>
-          </div>
-        </div>
-
-        <div className="hidden h-[60%] w-px bg-white/20 backdrop-blur lg:block" />
-
-        <div className="flex items-start justify-start gap-3">
-          <MapPin className="shrink-0 text-white h-10 w-10 md:h-10 md:w-10" />
-          <div>
-            <Button className="bg-white text-main cursor-pointer rounded-lg text-lg font-medium">
-              <Search />
-              Direction
-            </Button>
-            <p className="text-left text-l leading-tight text-white md:text-base">
-              Get here easily
-            </p>
-          </div>
-        </div>
-
-        <div className="hidden h-[60%] w-px bg-white/20 backdrop-blur lg:block" />
-
-        <div className="hidden md:flex w-full cursor-pointer items-center justify-center gap-3 rounded-xl border border-white p-3 text-white hover:border-main-lighter sm:w-auto">
-          <MessageCircleMore className="shrink-0" size={36} />
-          <div className="flex flex-col items-start justify-start">
-            <p className="text-base font-semibold leading-tight md:text-lg">
-              Live Chat
-            </p>
-            <p className="text-sm leading-tight text-neutral-200">
-              We&apos;re here to help
-            </p>
-          </div>
-        </div>
-      </div>
-      } */}
+        <DoctorAvailability />
+      </Modal>
       
     </header>
   );
