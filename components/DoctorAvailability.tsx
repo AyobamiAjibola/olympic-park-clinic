@@ -1,8 +1,12 @@
 import { doctors } from "@/constants/helper";
+import { appointments } from "@/lib/atoms";
+import { useAtom } from "jotai";
 import { CalendarDays, ExternalLink } from "lucide-react";
 import Image from "next/image";
 
 export default function DoctorAvailability() {
+  const [_, setOpenAppointment] = useAtom(appointments);
+
   return (
     <div className="space-y-3">
       <div className="mb-5">
@@ -68,6 +72,7 @@ export default function DoctorAvailability() {
             href={doctor.bookingUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => setOpenAppointment(false)}
             className="
               inline-flex shrink-0 items-center justify-center gap-2
               rounded-lg bg-main px-4 py-2.5
