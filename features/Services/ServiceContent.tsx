@@ -125,7 +125,7 @@ export default function ServiceContent() {
 
               <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">
                 Whether you are looking for a family doctor or need same day
-                medical attention, Primara Olympic Park Clinic is here to
+                medical attention, Primara (Olympic Park) Medical Clinic is here to
                 support you and your family.
               </p>
             </div>

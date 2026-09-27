@@ -5,24 +5,15 @@ import clinicImage from "@/public/primara.jpeg";
 import clinicImage3 from "@/public/primara_3.jpeg";
 import clinicImage2 from "@/public/primara_2.jpeg";
 import { 
-  CalendarDays, MapPin, 
+  MapPin, 
   Phone, 
   Users,
-  Check,
-  UserPlus,
-  PersonStanding,
-  BadgePlus,
-  Globe2,
-  CreditCard,
-  HeartPulse,
   ArrowRight,
   Clock,
-  Stethoscope,
   Heart,
   Calendar,
   Footprints,
   Users2,
-  HeartIcon,
   ParkingSquare,
   Clock3,
 } from "lucide-react";
@@ -37,86 +28,6 @@ import ServiceSection from "@/components/Services";
 import DoctorsSection from "@/components/DoctorsSection";
 import BgFlower from "@/public/bgFlowery.png";
 
-type DataType = {
-  title: React.ReactNode;
-  icon: React.ReactNode,
-  subTitle: React.ReactNode;
-}
-
-const data = [
-  {
-    title: <span className="font-semibold">Open 6 Days</span>,
-    icon: <CalendarDays className="text-main" size={20}/>,
-    subTitle: <span className="text-neutral-500 leading-4 text-sm">Mon - Sat</span>
-  },
-  {
-    title: <span className="font-semibold">Real Doctors</span>,
-    icon: <Users className="text-main" size={20}/>,
-    subTitle: <span className="text-neutral-500 leading-4 text-sm">Experienced family <br/>physicians</span>
-  },
-  {
-    title: <span className="font-semibold leading-4">Direct Billing</span>,
-    icon: <CreditCard className="text-main" size={20}/>,
-    subTitle: <span className="text-neutral-500 leading-6 text-sm">Most insurance plans</span>
-  }
-];
-
-const patientCards = [
-  {
-    title: "New patients accepted",
-    description: "We are always happy to welcome new patients and their families.",
-    icon: UserPlus,
-  },
-  {
-    title: "Walk-in patients accepted",
-    description: "No appointment needed. Walk in and see a doctor.",
-    icon: PersonStanding,
-  },
-  {
-    title: "IFHP patients accepted",
-    description: "We accept the Interim Federal Health Program (IFHP).",
-    icon: BadgePlus,
-  },
-  {
-    title: "Out-of-province patients accepted (except Quebec)",
-    description:
-      "We welcome patients from other provinces. Quebec patients are not accepted at this time.",
-    icon: Globe2,
-  },
-  {
-    title: "Private/self-pay patients accepted (no health card required)",
-    description:
-      "No Alberta health card? No problem. We offer self-pay options for your convenience.",
-    icon: CreditCard,
-  },
-];
-
-const items = [
-  "Long-term family doctor care",
-  "Same-day walk-in visits",
-  "Preventive and chronic disease management",
-  "Women's and mental health support",
-  "Experienced Family Doctors You Can Rely On"
-]
-
-const highlights = [
-  {
-    title: "Male & Female Doctors",
-    description: "Choose a doctor you're comfortable with",
-    icon: Stethoscope,
-  },
-  {
-    title: "Family Focused Care",
-    description: "Healthcare for children, adults, and seniors",
-    icon: Users,
-  },
-  {
-    title: "Comprehensive Care",
-    description: "Chronic conditions, preventive health & more",
-    icon: HeartPulse,
-  },
-];
-
 export default function HomeContent() {
 
   const heroTitle = "Thoughtful care"
@@ -130,11 +41,11 @@ export default function HomeContent() {
     },
     {
       icon: <Heart color="#205090"/>,
-      item: "Patients of all ages welcome"
+      item: "Preventive, chronic and acute care"
     },
     {
       icon: <Calendar color="#205090"/>,
-      item: "Patients of all ages welcome"
+      item: "Walk-in and scheduled appointments"
     }
   ]
 
@@ -145,7 +56,7 @@ export default function HomeContent() {
     <main>
       <section
         className="
-          h-screen pb-6 flex 
+          md:h-[80vh] pb-6 flex h-screen
           items-center
           bg-white relative
           overflow-hidden
@@ -161,7 +72,7 @@ export default function HomeContent() {
             <div 
               className="
                 absolute
-                bottom-20
+                bottom-5
                 left-1/2
                 -translate-x-1/2
                 flex-col

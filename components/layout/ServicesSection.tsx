@@ -67,23 +67,13 @@ const services = [
     description: "Reproductive and lifestyle care.",
     icon: ClipboardList,
     bullets: [
-      "Reproductive health",
-      "Menstrual health",
-      "Family planning",
-      "Lifestyle care",
+      "⁠Sexual and reproductive health care.",
+      "⁠Contraception and family planning.",
+      "⁠Menstrual concerns.",
+      "Routine pap smear (cervical cancer screening).",
+      "Perimenopause and menopause management."
     ],
-  },
-  {
-    title: "Minor procedures",
-    description: "Skin, joint and other in-office procedures.",
-    icon: CirclePlus,
-    bullets: [
-      "Skin procedures",
-      "Joint procedures",
-      "Minor in-office treatments",
-      "Follow-up care",
-    ],
-  },
+  }
 ];
 
 type IProps = {

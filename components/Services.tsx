@@ -36,12 +36,7 @@ const services = [
     title: "Women's health",
     description: "Reproductive and lifestyle care.",
     icon: ClipboardList,
-  },
-  {
-    title: "Minor procedures",
-    description: "Skin, joint and other in-office procedures.",
-    icon: CirclePlus,
-  },
+  }
 ];
 
 export default function ServiceSection() {

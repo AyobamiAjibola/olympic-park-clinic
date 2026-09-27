@@ -20,8 +20,6 @@ import {
   FileUp,
   UserCheck,
 } from "lucide-react";
-
-import clinicImage from "@/public/primara_2.jpeg";
 import DoctorsSection from "@/components/DoctorsSection";
 
 const steps = [
@@ -29,7 +27,7 @@ const steps = [
     number: "1",
     title: "Call 403-900-5551",
     description:
-      "Extension 4. Follow the instructions to register with a family doctor.",
+      "Follow the instructions to register with a family doctor.",
     icon: Phone,
   },
   {
@@ -81,16 +79,25 @@ const services = [
     title: "Men's Health",
     icon: Activity,
     points: [
-      "Prostate health, cholesterol, heart checks",
-      "Stress and sleep issues",
+      "⁠Sexual and reproductive health.",
+      "⁠Prostate and Urinary health concerns.",
+      "⁠Lifestyle management.",
+      "⁠Routine cancer screening.",
     ],
   },
   {
     title: "Chronic Conditions",
     icon: Stethoscope,
     points: [
-      "Diabetes, hypertension, asthma, thyroid issues",
-      "Regular medication renewals and monitoring",
+      "⁠Diabetes and prediabetes",
+      "⁠High blood pressure and high cholesterol",
+      "Asthma and COPD",
+      "⁠Thyroid disorders",
+      "Heart and kidney conditions",
+      "Arthritis and chronic pain",
+      "⁠Weight-related health concerns",
+      "⁠Mental health conditions",
+      "Medication reviews and prescription renewals"
     ],
   },
 ];
@@ -118,9 +125,9 @@ export default function FamilyDoctor() {
             </p>
 
             <p className="mt-4 text-xl text-center text-neutral-600 md:w-[60%]">
-              Looking for a family doctor you can trust? Our caring physicians
-              provide long-term, comprehensive care for individuals and families,
-              with walk-ins welcome and convenient access throughout the week.
+              Looking for a family doctor you can trust? Our caring physicians 
+              provide comprehensive, long-term care for individuals and families. 
+              Walk-in patients are welcome, with convenient access throughout the week.
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">

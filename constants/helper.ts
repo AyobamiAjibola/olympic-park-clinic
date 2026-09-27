@@ -24,7 +24,7 @@ export const doctors = [
     image: "",
     gender: "male",
     shortDescription:
-      "Dr. Eze is committed to providing compassionate, evidence-based care for individuals and families in Southwest Calgary.",
+      "Dr. Eze is committed to providing compassionate, evidence-based care for individuals and families in Southwest and Northwest Calgary.",
     description: "",
     href: "",
   },

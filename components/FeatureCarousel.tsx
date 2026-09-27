@@ -28,7 +28,7 @@ const features = [
   },
   {
     icon: Users,
-    title: "Make & Female Physicians",
+    title: "Male & Female Physicians",
     description:
       "Care for every member of your family",
   },
@@ -42,7 +42,7 @@ const features = [
     icon: MapPin,
     title: "Convenient care in Southwest Calgary",
     description:
-      "Accessible location with easy parking.",
+      "Accessible location with free parking.",
   },
 ];
 
