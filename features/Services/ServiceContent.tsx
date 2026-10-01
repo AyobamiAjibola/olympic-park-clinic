@@ -1,14 +1,8 @@
 'use client'
 
 import {
-  CalendarCheck,
   CheckCircle2,
-  Clock,
-  HeartPulse,
   Phone,
-  ShieldCheck,
-  UserRoundPlus,
-  Users
 } from "lucide-react";
 import { ServicesSection } from "@/components/layout/ServicesSection";
 import { OfficeNumber } from "@/constants/helper";

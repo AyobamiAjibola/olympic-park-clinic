@@ -58,7 +58,7 @@ export default function HomeContent() {
     <main>
       <section
         className="
-          md:h-[80vh] pb-6 flex h-screen
+          sm:h-[90vh] pb-6 flex h-screen
           items-center
           bg-white relative
           overflow-hidden

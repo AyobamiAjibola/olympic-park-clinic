@@ -1,43 +1,11 @@
 import { useRef } from "react";
 import {
-  Users,
-  HeartPulse,
-  Stethoscope,
-  Bandage,
-  ClipboardList,
-  CirclePlus,
   ChevronLeft,
   ChevronRight,
   ArrowRight,
 } from "lucide-react";
+import { services } from "@/constants/helper";
 
-const services = [
-  {
-    title: "Care for all ages",
-    description: "Newborns, children, adults and seniors.",
-    icon: Users,
-  },
-  {
-    title: "Preventive care",
-    description: "Check-ups, screenings and immunizations.",
-    icon: HeartPulse,
-  },
-  {
-    title: "Chronic disease management",
-    description: "Diabetes, hypertension and more.",
-    icon: Stethoscope,
-  },
-  {
-    title: "Acute illness care",
-    description: "Same-day assessment and treatment.",
-    icon: Bandage,
-  },
-  {
-    title: "Women's health",
-    description: "Reproductive and lifestyle care.",
-    icon: ClipboardList,
-  }
-];
 
 export default function ServiceSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -98,7 +66,7 @@ export default function ServiceSection() {
             [&::-webkit-scrollbar]:hidden
           "
         >
-          {services.map((service) => {
+          {services.slice(0,5).map((service) => {
             const Icon = service.icon;
 
             return (

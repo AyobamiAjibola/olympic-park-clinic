@@ -1,21 +1,9 @@
 'use client'
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Keyboard, Navigation } from "swiper/modules";
-import Image from "next/image";
-import logo from "@/public/logo.png";
-import { directionsUrl, doctors, OfficeNumber } from "@/constants/helper";
+import { directionsUrl, OfficeNumber, services } from "@/constants/helper";
 import { motion } from "motion/react";
-import Link from "next/link";
 import {
-  ArrowUpRight,
-  Check,
-  HeartPulse,
   Phone,
-  ShieldCheck,
-  Baby,
-  Stethoscope,
-  Activity,
   ChevronRight,
   FileUp,
   UserCheck,
@@ -44,62 +32,6 @@ const steps = [
     description:
       "Our team will reach out as soon as possible to connect you with a family doctor of your choice.",
     icon: UserCheck,
-  },
-];
-
-const services = [
-  {
-    title: "Preventive & Routine Care",
-    icon: ShieldCheck,
-    points: [
-      "Annual physical exams",
-      "Blood pressure and diabetes management",
-      "Health screening and lab follow-ups",
-    ],
-  },
-  {
-    title: "Women’s Health",
-    icon: HeartPulse,
-    points: [
-      "Pap tests and cervical screening",
-      "Prenatal care",
-      "Menopause support",
-      "UTIs, yeast infections, and hormonal care",
-    ],
-  },
-  {
-    title: "Children’s Health",
-    icon: Baby,
-    points: [
-      "Immunizations",
-      "Checkups and growth monitoring",
-      "Asthma and allergy management",
-    ],
-  },
-  {
-    title: "Men's Health",
-    icon: Activity,
-    points: [
-      "⁠Sexual and reproductive health.",
-      "⁠Prostate and Urinary health concerns.",
-      "⁠Lifestyle management.",
-      "⁠Routine cancer screening.",
-    ],
-  },
-  {
-    title: "Chronic Conditions",
-    icon: Stethoscope,
-    points: [
-      "⁠Diabetes and prediabetes",
-      "⁠High blood pressure and high cholesterol",
-      "Asthma and COPD",
-      "⁠Thyroid disorders",
-      "Heart and kidney conditions",
-      "Arthritis and chronic pain",
-      "⁠Weight-related health concerns",
-      "⁠Mental health conditions",
-      "Medication reviews and prescription renewals"
-    ],
   },
 ];
 

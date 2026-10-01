@@ -1,8 +1,10 @@
+import { Activity, Baby, Brain, FileText, HeartPulse, ShieldCheck, Stethoscope } from "lucide-react";
+
 export const OfficeNumber = "403-900-5551"
 export const fax = "403-900-5552"
 export const clinicEmail = "info@primaraolympicparkclinic.ca"
 export const clinicAddress = `34 Canada Olympic Common SW, Calgary, AB T3H 6K4`
-export const mapAddress = "Canada Olympic Common Southwest, Calgary, AB T3H 6K4, Canada";
+export const mapAddress = "34 Canada Olympic Common SW, Calgary, AB T3H 6K4";
 export const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
   mapAddress
 )}&output=embed`;
@@ -44,6 +46,100 @@ export const doctors = [
     href: "",
     bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2X4MccODHuNnKEe-1sL5ieOGHm1leIg8gBX2lABz1ndnXCdkiqZmDdjlTLqzlUTIJggJuKQNlF"
   }
+];
+
+export const services = [
+  {
+    title: "Preventive & Routine Care",
+    icon: ShieldCheck,
+    description:
+      "Stay on top of your health with regular checkups, screenings, and ongoing preventive care.",
+    points: [
+      "Annual physical exams",
+      "Blood pressure and diabetes management",
+      "Health screening and lab follow-ups",
+    ],
+  },
+  {
+    title: "Women’s Health",
+    icon: HeartPulse,
+    description:
+      "Comprehensive and supportive care for women through every stage of life.",
+    points: [
+      "Pap tests and cervical screening",
+      "Prenatal care",
+      "Menopause support",
+      "UTIs, yeast infections, and hormonal care",
+    ],
+  },
+  {
+    title: "Children’s Health",
+    icon: Baby,
+    description:
+      "Compassionate care to support your child’s health, development, and overall well-being.",
+    points: [
+      "Immunizations",
+      "Checkups and growth monitoring",
+      "Asthma and allergy management",
+    ],
+  },
+  {
+    title: "Men's Health",
+    icon: Activity,
+    description:
+      "Personalized care focused on men’s preventive, reproductive, and overall health needs.",
+    points: [
+      "Sexual and reproductive health",
+      "Prostate and urinary health concerns",
+      "Lifestyle management",
+      "Routine cancer screening",
+    ],
+  },
+  {
+    title: "Mental Health support",
+    icon: Brain,
+    description:
+      "Compassionate assessment, treatment, and ongoing support for common mental health and emotional well-being concerns.",
+    points: [
+      "Anxiety and panic symptoms",
+      "Depression and low mood",
+      "Stress and burnout",
+      "Grief and bereavement",
+      "⁠ADHD concerns",
+      "⁠Sleep difficulties related to mental health",
+      "⁠Life changes and adjustment difficulties"
+    ],
+  },
+  {
+    title: "Non-Insured Services",
+    icon: FileText,
+    description:
+      "Medical assessments, forms, and documentation for services that may not be covered by provincial health insurance.",
+    points: [
+      "⁠Medical certificates and fitness assessments",
+      "⁠Return-to-work assessments, letters and forms",
+      "⁠Driver’s medical examinations",
+      "⁠Accessible parking placard medical forms",
+      "⁠Visits for patients without provincial health coverage"
+    ],
+  },
+  {
+    title: "Chronic Conditions",
+    icon: Stethoscope,
+    description:
+      "Ongoing care and support to help you effectively manage long-term health conditions.",
+    points: [
+      "Diabetes and prediabetes",
+      "High blood pressure and high cholesterol",
+      "Asthma and COPD",
+      "Thyroid disorders",
+      "Heart and kidney conditions",
+      "Arthritis and chronic pain",
+      "Weight-related health concerns",
+      "Mental health conditions",
+      "Medication reviews and prescription renewals",
+    ],
+  },
 ];
 
 type StoreHours = {
