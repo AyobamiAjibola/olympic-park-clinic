@@ -1,13 +1,12 @@
 "use client";
 
 import { useState } from "react";
-import { Calendar, MapPin, Menu, Phone, X } from "lucide-react";
+import { Calendar, MapPin, Menu, X } from "lucide-react";
 import { NavLink } from "@/components/common/NavLink";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import logo from "@/public/main_logo2.png"
 import Image from "next/image";
-import { OfficeNumber } from "@/constants/helper";
 import { useAtom } from "jotai";
 import { appointments } from "@/lib/atoms";
 import Modal from "../Modal";
@@ -75,10 +74,17 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block">
-          <Button className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
-            onClick={()=>setOpenAppointment(true)}
+          <Button
+            className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
+            onClick={() =>
+              window.open(
+                "https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic",
+                "_blank",
+                "noopener,noreferrer"
+              )
+            }
           >
-            <Calendar color="white"/>
+            <Calendar color="white" />
             <span className="text-white text-base">
               Book Appointment
             </span>
@@ -126,11 +132,20 @@ const Navbar = () => {
           ))}
 
           <li className="pt-6 text-center flex justify-center items-center">
-            <Button className="flex flex-1 items-center bg-main-light p-3 rounded-xl h-full"
-              onClick={()=>setOpenAppointment(true)}
+            <Button
+              className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
+              onClick={() =>
+                window.open(
+                  "https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic",
+                  "_blank",
+                  "noopener,noreferrer"
+                )
+              }
             >
-              <Calendar className="w-5! h-5! shrink-0" color="white"/>
-              <span className="text-white text-lg font-semibold">Book an Appointment</span>
+              <Calendar color="white" />
+              <span className="text-white text-base">
+                Book Appointment
+              </span>
             </Button>
           </li>
         </ul>
