@@ -38,44 +38,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.primaraolympicparkclinic.ca"),
-
-  title: {
-    default: "Primara Olympic Park Medical Clinic",
-    template: "%s | Primara Olympic Park Medical Clinic",
-  },
-
-  description:
-    "Family Medicine & Walk-in. Compassionate care for every stage of life.",
-
-  openGraph: {
-    title: "Primara Olympic Park Medical Clinic",
-    description:
-      "Family Medicine & Walk-in. Compassionate care for every stage of life.",
-    url: "https://www.primaraolympicparkclinic.ca",
-    siteName: "Primara Olympic Park Medical Clinic",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_CA",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Primara Olympic Park Medical Clinic",
-    description:
-      "A clear description of your business, services, and location.",
-    images: ["/og-image.png"],
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
+  title: "Primara Olympic Park Medical Clinic",
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
