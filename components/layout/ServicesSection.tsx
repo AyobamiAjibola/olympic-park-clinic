@@ -1,6 +1,7 @@
 'use client'
 
 import { services } from "@/constants/helper";
+import Link from "next/link";
 import { motion } from "motion/react";
 
 type IProps = {
@@ -10,7 +11,7 @@ type IProps = {
 export function ServicesSection({ limit }: IProps) {
   return (
     <div className="mt-14 grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-      {services.slice(0,limit).map(({ title, icon: Icon, points, description }, index) => (
+      {services.slice(0,limit).map(({ title, icon: Icon, points, description, href }, index) => (
         <motion.article
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -42,6 +43,7 @@ export function ServicesSection({ limit }: IProps) {
               </li>
             ))}
           </ul>
+          {href && <Link href={href} className="mt-4 inline-flex font-bold text-main underline">Learn more</Link>}
         </motion.article>
       ))}
     </div>
