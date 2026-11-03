@@ -331,7 +331,7 @@ export default function HomeContent() {
 
               <Image
                 src={clinicImage3}
-                alt="Primara Olympic Park Medical Clinic and pharmacy"
+                alt="Primara Olympic Park Medical Clinic building at Canada Olympic Park"
                 className="h-full min-h-60 w-full rounded-xl object-cover"
               />
             </div>
