@@ -231,9 +231,9 @@ const holidays: Record<string, Holiday> = {
 
 const getDateKey = (date: Date) => {
   return [
-    date.getFullYear(),
-    String(date.getMonth() + 1).padStart(2, "0"),
-    String(date.getDate()).padStart(2, "0"),
+    date.getUTCFullYear(),
+    String(date.getUTCMonth() + 1).padStart(2, "0"),
+    String(date.getUTCDate()).padStart(2, "0"),
   ].join("-");
 };
 
@@ -263,7 +263,7 @@ const getHoursForDate = (date: Date): StoreHours | null => {
   }
 
   // Otherwise use normal weekly hours
-  return hours[date.getDay()];
+  return hours[date.getUTCDay()];
 };
 
 const findNextOpening = (fromDate: Date) => {
@@ -271,7 +271,7 @@ const findNextOpening = (fromDate: Date) => {
   for (let i = 1; i <= 14; i++) {
     const date = new Date(fromDate);
 
-    date.setDate(fromDate.getDate() + i);
+    date.setUTCDate(fromDate.getUTCDate() + i);
 
     const dayHours = getHoursForDate(date);
 
@@ -287,8 +287,18 @@ const findNextOpening = (fromDate: Date) => {
   return null;
 };
 
-export const getStoreStatus_ = () => {
-  const now = new Date();
+// UTC fields represent Calgary wall-clock time, independent of the host timezone.
+const calgaryWallTime = (instant: Date) => {
+  const parts = new Intl.DateTimeFormat("en-CA", {
+    timeZone: "America/Edmonton", year: "numeric", month: "2-digit",
+    day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23",
+  }).formatToParts(instant);
+  const part = (type: Intl.DateTimeFormatPartTypes) => Number(parts.find(p => p.type === type)!.value);
+  return new Date(Date.UTC(part("year"), part("month") - 1, part("day"), part("hour"), part("minute")));
+};
+
+export const getStoreStatus_ = (instant = new Date()) => {
+  const now = calgaryWallTime(instant);
 
   const dateKey = getDateKey(now);
   const holiday = holidays[dateKey];
@@ -315,7 +325,7 @@ export const getStoreStatus_ = () => {
     }
 
     const dayName = date.toLocaleDateString("en-US", {
-      weekday: "long",
+      weekday: "long", timeZone: "UTC",
     });
 
     return {
@@ -327,7 +337,7 @@ export const getStoreStatus_ = () => {
   }
 
   // Store has opening hours today
-  const currentMinutes = now.getHours() * 60 + now.getMinutes();
+  const currentMinutes = now.getUTCHours() * 60 + now.getUTCMinutes();
 
   const openingMinutes = today.open * 60;
   const closingMinutes = today.close * 60;
@@ -368,7 +378,7 @@ export const getStoreStatus_ = () => {
   }
 
   const dayName = date.toLocaleDateString("en-US", {
-    weekday: "long",
+    weekday: "long", timeZone: "UTC",
   });
 
   return {
@@ -377,8 +387,8 @@ export const getStoreStatus_ = () => {
   };
 };
 
-export const getTodayHours = (): string => {
-  const day = new Date().getDay();
+export const getTodayHours = (instant = new Date()): string => {
+  const day = calgaryWallTime(instant).getUTCDay();
 
   // Sunday = 0
   // Monday = 1

@@ -17,11 +17,12 @@ import {
   ParkingSquare,
   Clock3,
 } from "lucide-react";
-import {  directionsUrl, getStoreStatus_, getTodayHours, OfficeNumber } from "@/constants/helper";
+import {  directionsUrl, OfficeNumber } from "@/constants/helper";
 import { motion } from "motion/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Button } from "@/components/ui/button";
+import { useClinicStatus } from "@/lib/useClinicStatus";
 import OpenIndicator from "@/components/OpenIndicator";
 import FeatureCarousel from "@/components/FeatureCarousel";
 import ServiceSection from "@/components/Services";
@@ -51,8 +52,8 @@ export default function HomeContent() {
     }
   ]
 
-  const mobileOpen = getTodayHours();
-  const storeStatus = getStoreStatus_();
+  const storeStatus = useClinicStatus();
+  const mobileOpen = storeStatus?.hours;
   
   return (
     <main>
@@ -163,13 +164,13 @@ export default function HomeContent() {
                           Walk-in Status
                         </p>
 
-                        <p className={`font-bold ${storeStatus.isOpen ? 'text-main text-[16px]' : 'text-red-600 text-lg'}`}>
-                          {storeStatus.isOpen ? mobileOpen : "Closed"}
+                        <p style={{ visibility: storeStatus ? "visible" : "hidden" }} className={`font-bold ${storeStatus?.isOpen ? 'text-main text-[16px]' : 'text-red-600 text-lg'}`}>
+                          {storeStatus?.isOpen ? mobileOpen : "Closed"}
                         </p>
                       </div>
                     </div>
 
-                    {storeStatus.isOpen && <div className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-2">
+                    {storeStatus?.isOpen && <div className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-2">
                       <span className="size-2 rounded-full bg-green-500" />
                       <span className="text-xs font-bold text-green-600">
                         OPEN

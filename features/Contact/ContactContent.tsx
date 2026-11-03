@@ -115,7 +115,7 @@ export default function ContactContent() {
               icon={<Clock className="h-8 w-8" />}
               title="Clinic Hours"
               description="Open throughout the week."
-              value="Mon to Fri, 9 AM to 7 PM"
+              value={<>Mon to Fri, 9 AM to 7 PM<br />Sat, 10 AM to 4 PM</>}
               href="#hours"
             />
           </div>
@@ -377,7 +377,7 @@ function ContactInfoCard({
   icon: React.ReactNode;
   title: string;
   description: string;
-  value: string;
+  value: React.ReactNode;
   href?: string;
 }) {
   const content = (
