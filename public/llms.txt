@@ -12,3 +12,4 @@ Hours (America/Edmonton): Monday-Friday 9:00-19:00, Saturday 10:00-16:00, Sunday
 - [About](https://www.primaraolympicparkclinic.ca/about)
 - [Contact](https://www.primaraolympicparkclinic.ca/contact)
 - [Doctors](https://www.primaraolympicparkclinic.ca/doctors)
+- [Female Family Doctor](https://www.primaraolympicparkclinic.ca/doctors/female-family-doctor)
