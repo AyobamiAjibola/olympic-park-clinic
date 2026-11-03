@@ -32,7 +32,7 @@ export default function ServiceContent() {
 
             <div className="mt-10 flex flex-col gap-4 sm:flex-row">
               <a
-                href="tel:4030000000"
+                href="tel:+14039005551"
                 className="inline-flex items-center justify-center gap-3 rounded-xl bg-main px-8 py-4 font-bold text-white shadow-lg shadow-blue-900/20"
               >
                 <Phone className="h-5 w-5" />
@@ -126,7 +126,7 @@ export default function ServiceContent() {
 
             <div className="flex flex-col gap-4 sm:flex-row lg:justify-end">
               <a
-                href="tel:4030000000"
+                href="tel:+14039005551"
                 className="inline-flex items-center justify-center gap-3 rounded-xl bg-white px-8 py-4 font-bold text-main"
               >
                 <Phone className="h-5 w-5" />

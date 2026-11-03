@@ -76,7 +76,7 @@ export default function FamilyDoctor() {
               </a>
 
               <a
-                href={`tel:${OfficeNumber}`}
+                href="tel:+14039005551"
                 className="rounded-xl inline-flex items-center justify-center gap-2 border-2 border-main px-7 py-4 font-semibold text-main transition hover:bg-main hover:text-white"
               >
                 <Phone size={20} className="w-6! h-6!" />

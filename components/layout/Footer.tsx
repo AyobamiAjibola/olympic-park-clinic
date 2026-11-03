@@ -45,7 +45,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-6 md:items-end">
           <a
-            href="tel:4039005551"
+            href="tel:+14039005551"
             className="
               flex
               items-center

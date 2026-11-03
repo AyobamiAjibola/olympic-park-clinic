@@ -1,15 +1,38 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/providers/AppProvider";
 import { Allura } from "next/font/google";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "MedicalClinic",
+  "@id": "https://www.primaraolympicparkclinic.ca/#clinic",
   name: "Primara Olympic Park Medical Clinic",
   url: "https://www.primaraolympicparkclinic.ca",
   telephone: "+1-403-900-5551",
+  faxNumber: "+1-403-900-5552",
+  email: "info@primaraolympicparkclinic.ca",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "10:00",
+      closes: "16:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: "00:00",
+      closes: "00:00",
+    },
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "34 Canada Olympic Common SW",
@@ -19,6 +42,13 @@ const jsonLd = {
     addressCountry: "CA",
   },
 };
+
+const inter = Inter({
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 const allura = Allura({
   weight: "400",
@@ -38,44 +68,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.primaraolympicparkclinic.ca"),
-
-  title: {
-    default: "Primara Olympic Park Medical Clinic",
-    template: "%s | Primara Olympic Park Medical Clinic",
-  },
-
-  description:
-    "Family Medicine & Walk-in. Compassionate care for every stage of life.",
-
-  openGraph: {
-    title: "Primara Olympic Park Medical Clinic",
-    description:
-      "Family Medicine & Walk-in. Compassionate care for every stage of life.",
-    url: "https://www.primaraolympicparkclinic.ca",
-    siteName: "Primara Olympic Park Medical Clinic",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-      },
-    ],
-    locale: "en_CA",
-    type: "website",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Primara Olympic Park Medical Clinic",
-    description:
-      "A clear description of your business, services, and location.",
-    images: ["/og-image.png"],
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
+  title: "Primara Olympic Park Medical Clinic",
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
@@ -86,7 +80,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} h-full antialiased`}
     >
       <body className={`min-h-full flex flex-col ${allura.variable}`}>
         <script

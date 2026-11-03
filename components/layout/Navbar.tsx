@@ -9,8 +9,9 @@ import logo from "@/public/main_logo2.png"
 import Image from "next/image";
 import { useAtom } from "jotai";
 import { appointments } from "@/lib/atoms";
-import Modal from "../Modal";
-import DoctorAvailability from "../DoctorAvailability";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../Modal"), { ssr: false });
+const DoctorAvailability = dynamic(() => import("../DoctorAvailability"), { ssr: false });
 
 const links = [
   { to: "/services", label: "Services" },
@@ -46,7 +47,7 @@ const Navbar = () => {
             <Image
               alt="logo"
               src={logo}
-              className="md:h-18 md:w-60 h-16 w-46"
+              className="md:h-18 md:w-60 h-16 w-46 object-contain"
             />
           </div>
         </NavLink>
@@ -74,20 +75,22 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block">
-          <Button
+          <Button asChild
             className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
-            onClick={() =>
-              window.open(
-                "https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic",
-                "_blank",
-                "noopener,noreferrer"
-              )
-            }
           >
+            <a href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic"
+              target="_blank" rel="noopener noreferrer"
+              onClick={(event) => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                setOpenAppointment(true);
+              }}
+            >
             <Calendar color="white" />
             <span className="text-white text-base">
               Book Appointment
             </span>
+            </a>
           </Button>
         </div>
 
@@ -132,32 +135,34 @@ const Navbar = () => {
           ))}
 
           <li className="pt-6 text-center flex justify-center items-center">
-            <Button
+            <Button asChild
               className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
-              onClick={() =>
-                window.open(
-                  "https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic",
-                  "_blank",
-                  "noopener,noreferrer"
-                )
-              }
+          >
+            <a href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic"
+              target="_blank" rel="noopener noreferrer"
+              onClick={(event) => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                setOpenAppointment(true);
+              }}
             >
               <Calendar color="white" />
               <span className="text-white text-base">
                 Book Appointment
               </span>
+              </a>
             </Button>
           </li>
         </ul>
       </div>
 
-      <Modal
+      {openAppointment && <Modal
         open={openAppointment}
         onOpenChange={setOpenAppointment}
         title="Book an Appointment"
       >
         <DoctorAvailability />
-      </Modal>
+      </Modal>}
       
     </header>
   );

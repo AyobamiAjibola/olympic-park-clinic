@@ -1,4 +1,6 @@
-import { getStoreStatus_ } from '@/constants/helper';
+"use client";
+
+import { useClinicStatus } from "@/lib/useClinicStatus";
 
 type IProps = {
     showTitle?: boolean;
@@ -11,19 +13,19 @@ export default function OpenIndicator({
     showTitle=true, innerPingSize='size-5',
     classNameMainText, pingContainerSize='size-6'
 }: IProps) {
-    const storeStatus = getStoreStatus_();
+    const storeStatus = useClinicStatus();
     
     return (
-        <div className="flex items-center justify-start gap-4">
+        <div style={{ visibility: storeStatus ? "visible" : "hidden" }} className="flex items-center justify-start gap-4">
             <span className={`relative ml-2 flex items-center justify-center md:ml-0 ${pingContainerSize}`}>
                 <span
                 className={`absolute inline-flex h-full w-full animate-ping rounded-full ${
-                    storeStatus.isOpen ? "bg-green-400" : "bg-red-400"
+                    storeStatus?.isOpen ? "bg-green-400" : "bg-red-400"
                 } opacity-75`}
                 />
                 <span
                 className={`relative inline-flex rounded-full ${
-                    storeStatus.isOpen ? "bg-green-500" : "bg-red-400"
+                    storeStatus?.isOpen ? "bg-green-500" : "bg-red-400"
                 } ${innerPingSize}`}
                 />
             </span>
@@ -35,14 +37,14 @@ export default function OpenIndicator({
 
                 <span
                 className={`text-2xl font-black sm:text-3xl ${
-                    storeStatus.isOpen ? "text-green-500" : "text-red-400"
+                    storeStatus?.isOpen ? "text-green-500" : "text-red-400"
                 } ${classNameMainText}`}
                 >
-                {storeStatus.isOpen ? "OPEN NOW" : "CLOSED"}
+                {storeStatus?.isOpen ? "OPEN NOW" : "CLOSED"}
                 </span>
 
                 {showTitle && <p className="text-sm font-semibold leading-relaxed text-main">
-                {storeStatus.message}
+                {storeStatus?.message}
                 </p>}
             </div>
         </div>
