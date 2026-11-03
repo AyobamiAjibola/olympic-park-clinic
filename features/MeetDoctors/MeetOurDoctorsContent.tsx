@@ -59,11 +59,11 @@ export default function MeetOurDoctorsContent() {
 
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <a
-                  href="tel:5873918188"
+                  href="tel:+14039005551"
                   className="inline-flex items-center justify-center gap-3 rounded-lg border border-main bg-main px-8 py-4 font-bold text-white"
                 >
                   <Phone className="h-5 w-5" />
-                  Call: 587-391-8188
+                  Call: 403-900-5551
                 </a>
               </div>
             </div>

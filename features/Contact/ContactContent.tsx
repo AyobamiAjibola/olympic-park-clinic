@@ -100,7 +100,7 @@ export default function ContactContent() {
               title="Call Us"
               description="Speak directly with our clinic team."
               value={OfficeNumber}
-              href={`tel:${OfficeNumber}`}
+              href="tel:+14039005551"
             />
 
             <ContactInfoCard

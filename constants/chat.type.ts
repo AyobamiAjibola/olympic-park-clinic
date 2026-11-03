@@ -52,7 +52,7 @@ export const clinicAssistantFlow = {
         buttons: [
           {
             name: "Call Clinic",
-            action: "tel:+14030000000",
+            action: "tel:+14039005551",
           },
           {
             name: "Back to Menu",
@@ -112,7 +112,7 @@ export const clinicAssistantFlow = {
         buttons: [
           {
             name: "Call Clinic",
-            action: "tel:+14030000000",
+            action: "tel:+14039005551",
           },
           {
             name: "Back to Menu",

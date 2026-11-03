@@ -111,7 +111,7 @@ export default function HomeContent() {
 
                 <div className="mt-3 grid grid-cols-2 gap-3">
                   <a
-                    href="tel:4039005551"
+                    href="tel:+14039005551"
                     className="
                       flex h-13 items-center justify-center gap-2
                       rounded-xl border-2 border-white
@@ -239,11 +239,13 @@ export default function HomeContent() {
           </span>
 
           <div className="w-full flex gap-2 mt-12">
-            <Button className="flex flex-1 items-center bg-main-light p-6 rounded-xl border border-main-light">
+            <Button asChild className="flex flex-1 items-center bg-main-light p-6 rounded-xl border border-main-light">
+              <a href="tel:+14039005551">
               <Phone color={"white"} className="h-6! w-6!"/>
               <span className="text-white text-lg font-semibold">
                 {OfficeNumber}
               </span>
+              </a>
             </Button>
             <a 
               href={directionsUrl}
