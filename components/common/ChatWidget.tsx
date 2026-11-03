@@ -39,6 +39,7 @@ export default function ChatWidget() {
         <div className="fixed bottom-6 right-6 z-50">
             {showWelcomeMsg && (
                 <button
+                    aria-label="Dismiss chat greeting"
                     onClick={hideWelcomeMessage}
                     className="absolute -top-2 -left-2 flex h-6 w-6 items-center justify-center rounded-full bg-white shadow"
                 >
@@ -72,6 +73,7 @@ export default function ChatWidget() {
 
                 <button
                     type="button"
+                    aria-label="Open chat"
                     onClick={() => {
                     setIsOpen(true);
                     hideWelcomeMessage();

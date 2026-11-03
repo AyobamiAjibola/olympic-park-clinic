@@ -70,7 +70,7 @@ export default function HomeContent() {
             <Image
               src={clinicImage}
               alt="Clinic"
-              className="h-full w-full object-fill"
+              className="h-full w-full object-cover"
             />
             <div 
               className="
