@@ -388,21 +388,6 @@ export const getStoreStatus_ = (instant = new Date()) => {
 };
 
 export const getTodayHours = (instant = new Date()): string => {
-  const day = calgaryWallTime(instant).getUTCDay();
-
-  // Sunday = 0
-  // Monday = 1
-  // ...
-  // Saturday = 6
-
-  if (day >= 1 && day <= 5) {
-    return "9:00 AM - 7:00 PM";
-  }
-
-  if (day === 6) {
-    return "10:00 AM - 4:00 PM";
-  }
-
-  return "Closed";
+  const today = getHoursForDate(calgaryWallTime(instant));
+  return today ? `${today.openText} - ${today.closeText}` : "Closed";
 };
-
