@@ -74,20 +74,22 @@ const Navbar = () => {
         </ul>
 
         <div className="hidden md:block">
-          <Button
+          <Button asChild
             className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
-            onClick={() =>
-              window.open(
-                "https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic",
-                "_blank",
-                "noopener,noreferrer"
-              )
-            }
           >
+            <a href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic"
+              target="_blank" rel="noopener noreferrer"
+              onClick={(event) => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                setOpenAppointment(true);
+              }}
+            >
             <Calendar color="white" />
             <span className="text-white text-base">
               Book Appointment
             </span>
+            </a>
           </Button>
         </div>
 
@@ -132,20 +134,22 @@ const Navbar = () => {
           ))}
 
           <li className="pt-6 text-center flex justify-center items-center">
-            <Button
+            <Button asChild
               className="rounded-lg bg-main-light py-5 w-auto cursor-pointer"
-              onClick={() =>
-                window.open(
-                  "https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic",
-                  "_blank",
-                  "noopener,noreferrer"
-                )
-              }
+          >
+            <a href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic"
+              target="_blank" rel="noopener noreferrer"
+              onClick={(event) => {
+                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+                event.preventDefault();
+                setOpenAppointment(true);
+              }}
             >
               <Calendar color="white" />
               <span className="text-white text-base">
                 Book Appointment
               </span>
+              </a>
             </Button>
           </li>
         </ul>
