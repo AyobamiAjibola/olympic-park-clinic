@@ -13,7 +13,7 @@ function Accordion({ items }: { items: string[][] }) {
   return <div className="mt-8 space-y-4">{items.map(([title, answer]) => (
     <details key={title} className="rounded-xl border border-main bg-white p-8 shadow-lg shadow-main/5">
       <summary className="cursor-pointer text-2xl font-black text-main">{title}</summary>
-      <p className="mt-5 text-lg leading-8 text-slate-600">{answer}</p>
+      <p className="mt-5 text-lg leading-8 text-slate-600">{title === "Can I see a female doctor?" ? <>Yes. <a href="/doctors/female-family-doctor" className="underline underline-offset-4">Dr. Lynder Alole</a> is a female family physician here. Call 403-900-5551 and ask for a visit with her.</> : answer}</p>
     </details>
   ))}</div>;
 }

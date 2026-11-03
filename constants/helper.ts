@@ -43,7 +43,7 @@ export const doctors = [
     shortDescription:
       "Dr. Alole believes in building lasting relationships with her patients and supporting them through every stage of life.",
     description: "",
-    href: "",
+    href: "/doctors/female-family-doctor",
     bookingUrl: "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2X4MccODHuNnKEe-1sL5ieOGHm1leIg8gBX2lABz1ndnXCdkiqZmDdjlTLqzlUTIJggJuKQNlF"
   }
 ];
