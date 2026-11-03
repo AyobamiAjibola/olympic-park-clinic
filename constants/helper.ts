@@ -10,9 +10,9 @@ export const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(
 )}&output=embed`;
 export const directionsUrl =
   `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(mapAddress)}`;
-export const monFriHrs = "Monday - Friday: 9:00 AM \u2014 7:00 PM"
+export const monFriHrs = "Monday - Friday: 9:00 AM — 7:00 PM"
 export const sundayHrs = "Sunday: Closed"
-export const saturdayHrs = "Saturday: 10:00 AM \u2014 4:00 PM"
+export const saturdayHrs = "Saturday: 10:00 AM — 4:00 PM"
 export const BOOKING_LINK = "https://calendar.google.com/calendar/appointments/schedules/AcZssZ2X4MccODHuNnKEe-1sL5ieOGHm1leIg8gBX2lABz1ndnXCdkiqZmDdjlTLqzlUTIJggJuKQNlF";
 
 export const doctors = [
