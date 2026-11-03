@@ -6,10 +6,33 @@ import { Allura } from "next/font/google";
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "MedicalClinic",
+  "@id": "https://www.primaraolympicparkclinic.ca/#clinic",
   name: "Primara Olympic Park Medical Clinic",
   url: "https://www.primaraolympicparkclinic.ca",
   telephone: "+1-403-900-5551",
+  faxNumber: "+1-403-900-5552",
+  email: "info@primaraolympicparkclinic.ca",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "19:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Saturday",
+      opens: "10:00",
+      closes: "16:00",
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: "Sunday",
+      opens: "00:00",
+      closes: "00:00",
+    },
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: "34 Canada Olympic Common SW",

@@ -31,6 +31,26 @@ export const metadata: Metadata = {
   }
 };
 
+const physicians = ["Dr. Jacob Eze", "Dr. Lynder Alole"].map((name) => ({
+  "@context": "https://schema.org",
+  "@type": "Physician",
+  name,
+  jobTitle: "Family Physician",
+  worksFor: {
+    "@type": "MedicalClinic",
+    "@id": "https://www.primaraolympicparkclinic.ca/#clinic",
+    name: "Primara Olympic Park Medical Clinic",
+  },
+}));
+
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(physicians) }}
+      />
+      {children}
+    </>
+  );
 }
