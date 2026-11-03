@@ -80,16 +80,16 @@ const Navbar = () => {
           >
             <a href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic"
               target="_blank" rel="noopener noreferrer"
-              onClick={(event) => {
-                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-                event.preventDefault();
-                setOpenAppointment(true);
-              }}
+              // onClick={(event) => {
+              //   if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              //   event.preventDefault();
+              //   setOpenAppointment(true);
+              // }}
             >
-            <Calendar color="white" />
-            <span className="text-white text-base">
-              Book Appointment
-            </span>
+              <Calendar color="white" />
+              <span className="text-white text-base">
+                Book Appointment
+              </span>
             </a>
           </Button>
         </div>
@@ -140,11 +140,11 @@ const Navbar = () => {
           >
             <a href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic"
               target="_blank" rel="noopener noreferrer"
-              onClick={(event) => {
-                if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-                event.preventDefault();
-                setOpenAppointment(true);
-              }}
+              // onClick={(event) => {
+              //   if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+              //   event.preventDefault();
+              //   setOpenAppointment(true);
+              // }}
             >
               <Calendar color="white" />
               <span className="text-white text-base">
