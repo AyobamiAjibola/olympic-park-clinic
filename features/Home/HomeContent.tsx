@@ -70,6 +70,8 @@ export default function HomeContent() {
             <Image
               src={clinicImage}
               alt="Clinic"
+              priority
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="h-full w-full object-cover"
             />
             <div 

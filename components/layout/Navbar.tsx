@@ -9,8 +9,9 @@ import logo from "@/public/main_logo2.png"
 import Image from "next/image";
 import { useAtom } from "jotai";
 import { appointments } from "@/lib/atoms";
-import Modal from "../Modal";
-import DoctorAvailability from "../DoctorAvailability";
+import dynamic from "next/dynamic";
+const Modal = dynamic(() => import("../Modal"), { ssr: false });
+const DoctorAvailability = dynamic(() => import("../DoctorAvailability"), { ssr: false });
 
 const links = [
   { to: "/services", label: "Services" },
@@ -155,13 +156,13 @@ const Navbar = () => {
         </ul>
       </div>
 
-      <Modal
+      {openAppointment && <Modal
         open={openAppointment}
         onOpenChange={setOpenAppointment}
         title="Book an Appointment"
       >
         <DoctorAvailability />
-      </Modal>
+      </Modal>}
       
     </header>
   );

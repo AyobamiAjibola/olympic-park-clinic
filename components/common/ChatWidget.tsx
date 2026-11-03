@@ -4,13 +4,15 @@ import Image from "next/image";
 import { MessageCircleMore, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import chatWithUs from "@/public/chat-with-us.png";
-import ChatPanel from "./ChatPanel";
+import dynamic from "next/dynamic";
+const ChatPanel = dynamic(() => import("./ChatPanel"), { ssr: false });
 
 const WELCOME_STORAGE_KEY = "primara-chat-welcome-hidden";
 
 export default function ChatWidget() {
   const [showWelcomeMsg, setShowWelcomeMsg] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [hasOpened, setHasOpened] = useState(false);
 
   useEffect(() => {
     const isHidden = localStorage.getItem(WELCOME_STORAGE_KEY);
@@ -30,11 +32,11 @@ export default function ChatWidget() {
 
   return (
     <>
-        <ChatPanel
+        {hasOpened && <ChatPanel
             setIsOpen={setIsOpen}
             isOpen={isOpen}
             onResetChat={resetWelcomeMessage}
-        />
+        />}
 
         <div className="fixed bottom-6 right-6 z-50">
             {showWelcomeMsg && (
@@ -75,6 +77,7 @@ export default function ChatWidget() {
                     type="button"
                     aria-label="Open chat"
                     onClick={() => {
+                    setHasOpened(true);
                     setIsOpen(true);
                     hideWelcomeMessage();
                     }}
