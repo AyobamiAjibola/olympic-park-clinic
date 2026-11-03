@@ -62,6 +62,7 @@ export default function ChatWidget() {
                     <Image
                         src={chatWithUs}
                         alt="Live Chat"
+                        sizes="40px"
                         className="h-10 w-10 rounded-full object-cover"
                     />
 
