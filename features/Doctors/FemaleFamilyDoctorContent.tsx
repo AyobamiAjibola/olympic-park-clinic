@@ -27,12 +27,14 @@ export default function FemaleFamilyDoctorContent() {
       : "inline-flex items-center justify-center gap-3 rounded-xl bg-main px-8 py-4 font-bold text-white shadow-lg shadow-blue-900/20"}>
       <Phone className="h-5 w-5" />Call: 403-900-5551
     </a>
-    <a href={BOOKING_LINK} target="_blank" rel="noopener noreferrer"
-      onClick={(event) => {
-        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-        event.preventDefault();
-        setOpenAppointment(true);
-      }}
+    <a 
+      href="https://patient.medeohealth.com/booking/primara-olympic-park-medical-clinic" 
+      target="_blank" rel="noopener noreferrer"
+      // onClick={(event) => {
+      //   if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      //   event.preventDefault();
+      //   setOpenAppointment(true);
+      // }}
       className={dark
         ? "inline-flex items-center justify-center gap-3 rounded-xl border border-white/30 px-8 py-4 font-bold text-white transition hover:bg-white hover:text-main"
         : "inline-flex items-center justify-center gap-3 rounded-xl border border-main/20 bg-white px-8 py-4 font-bold text-main"}>
