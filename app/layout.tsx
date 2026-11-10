@@ -51,17 +51,20 @@ const inter = Inter({
 });
 
 const allura = Allura({
+  preload: false,
   weight: "400",
   subsets: ["latin"],
   variable: "--font-allura",
 });
 
 const geistSans = Geist({
+  preload: false,
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
+  preload: false,
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });

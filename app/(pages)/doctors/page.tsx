@@ -234,6 +234,27 @@ export default function FamilyDoctor() {
           </div>
         </div>
       </section>
+      <section className="px-4 py-10 sm:px-6">
+        <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="text-4xl font-black text-neutral-950 sm:text-5xl">
+              Direct Billing
+            </h2>
+
+            <p className="mt-5 text-xl leading-8 text-neutral-600">
+              We bill Alberta Health directly for insured visits. We also bill out-of-province health plans (except Quebec), Medavie Blue Cross and the Workers&apos; Compensation Board (WCB).
+            </p>
+
+            <p className="mt-5 text-xl leading-8 text-neutral-600">
+              Patients from Quebec pay at the visit, because Quebec does not allow direct billing for care received in another province.
+            </p>
+
+            <p className="mt-5 text-xl leading-8 text-neutral-600">
+              Driver&apos;s medicals and forms are not billed to insurance. You pay the clinic and can ask your own insurer about a refund.
+            </p>
+          </div>
+        </div>
+      </section>
     </main>
   )
 }
