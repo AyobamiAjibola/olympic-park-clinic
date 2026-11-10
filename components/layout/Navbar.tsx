@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="items-center gap-1 md:flex hidden flex-row">
           <MapPin color="white" size={16}/>
           <span className="text-white text-xs font-medium">
-            Proudly serving Southwest, Northwest Calgary
+            Proudly serving Northwest Calgary
           </span>
         </div>
 
@@ -45,8 +45,10 @@ const Navbar = () => {
         >
           <div className="flex items-center">
             <Image
-              alt="logo"
+              alt="Primara Olympic Park Medical Clinic"
               src={logo}
+              sizes="(min-width: 768px) 240px, 184px"
+              loading="eager"
               className="md:h-18 md:w-60 h-16 w-46 object-contain"
             />
           </div>

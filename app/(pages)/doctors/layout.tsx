@@ -31,6 +31,15 @@ export const metadata: Metadata = {
   }
 };
 
+const breadcrumbs = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://www.primaraolympicparkclinic.ca/" },
+    { "@type": "ListItem", position: 2, name: "Doctors", item: "https://www.primaraolympicparkclinic.ca/doctors" },
+  ],
+};
+
 const physicians = ["Dr. Jacob Eze", "Dr. Lynder Alole"].map((name) => ({
   "@context": "https://schema.org",
   "@type": "Physician",
@@ -49,6 +58,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(physicians) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbs) }}
       />
       {children}
     </>
