@@ -15,6 +15,7 @@ import {
   Footprints,
   Users2,
   ParkingSquare,
+  CreditCard,
   Clock3,
 } from "lucide-react";
 import {  directionsUrl, OfficeNumber } from "@/constants/helper";
@@ -69,8 +70,9 @@ export default function HomeContent() {
           <div className="relative h-full w-full md:w-[50%]">
             <Image
               src={clinicImage}
-              alt="Clinic"
+              alt="Primara Olympic Park Medical Clinic"
               priority
+              fetchPriority="high"
               sizes="(min-width: 768px) 50vw, 100vw"
               className="h-full w-full object-cover"
             />
@@ -99,7 +101,7 @@ export default function HomeContent() {
               viewport={{ once: true, amount: 0.08 }}
               className="h-full justify-start w-full bg-transparent flex flex-col px-6 mt-16"
             >
-              <span className="font-black text-[40px] text-white text-left leading-[1.05]">{heroTitle},{" "}
+              <span role="heading" aria-level={1} className="font-black text-[40px] text-white text-left leading-[1.05]">{heroTitle},{" "}
               <span className="font-black text-[40px] text-white text-left leading-[1.05]">{heroTitle2}.</span></span>
               <span className="text-lg text-white text-left leading-5 mt-2">{subTitle}</span>
 
@@ -235,8 +237,8 @@ export default function HomeContent() {
           viewport={{ once: true, amount: 0.08 }}
           className="relative z-10 h-full w-[50%] px-8 md:flex hidden bg-transparent flex-col justify-start items-start"
         >
-          <span className="font-black text-[60px] text-main tracking-[-0.03em] mt-20 mb-4 leading-[1.05]">{heroTitle}, {" "}
-          <span className="font-black text-[60px] text-main-light mb-5 tracking-[-0.03em] leading-[1.05]">{heroTitle2}.</span></span>
+          <h1 className="font-black text-[60px] text-main tracking-[-0.03em] mt-20 mb-4 leading-[1.05]">{heroTitle}, {" "}
+          <span className="font-black text-[60px] text-main-light mb-5 tracking-[-0.03em] leading-[1.05]">{heroTitle2}.</span></h1>
           <span className="text-xl text-main mt-1 md:w-[80%]">
             Compassionate, evidence-based primary care for every stage of life.
           </span>
@@ -292,7 +294,8 @@ export default function HomeContent() {
       <div className="relative flex w-full min-h-24 mb-6">
         <Image
           src={BgFlower}
-          alt="inclusive"
+          sizes="100vw"
+          alt=""
           fill
           className="object-cover z-0"
         />
@@ -317,7 +320,7 @@ export default function HomeContent() {
             </p>
 
             <h2 className="text-3xl font-black tracking-tight text-main md:text-2xl">
-              Convenient care in Southwest Calgary
+              Convenient care in Northwest Calgary
             </h2>
           </div>
 
@@ -325,12 +328,14 @@ export default function HomeContent() {
             <div className="grid grid-cols-2 gap-3">
               <Image
                 src={clinicImage2}
+                sizes="(min-width: 1024px) 20vw, 50vw"
                 alt="Primara Olympic Park Medical Clinic entrance"
                 className="h-full min-h-60 w-full rounded-xl object-cover"
               />
 
               <Image
                 src={clinicImage3}
+                sizes="(min-width: 1024px) 20vw, 50vw"
                 alt="Primara Olympic Park Medical Clinic building at Canada Olympic Park"
                 className="h-full min-h-60 w-full rounded-xl object-cover"
               />
@@ -380,6 +385,23 @@ export default function HomeContent() {
 
                   <p className="mt-1 text-sm text-gray-600">
                     Ample on-site parking for our patients.
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4">
+                <CreditCard
+                  className="mt-1 size-7 shrink-0 text-main-light"
+                  strokeWidth={2}
+                />
+
+                <div>
+                  <h3 className="font-bold text-main">
+                    Direct billing
+                  </h3>
+
+                  <p className="mt-1 text-sm text-gray-600">
+                    Alberta Health, other provinces except Quebec, Medavie Blue Cross and WCB.
                   </p>
                 </div>
               </div>

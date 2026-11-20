@@ -75,9 +75,9 @@ const FeatureCarousel = () => {
                 />
 
                 <div>
-                    <h3 className="text-sm font-semibold leading-snug text-[#003B70]">
+                    <h2 className="text-sm font-semibold leading-snug text-[#003B70]">
                     {feature.title}
-                    </h3>
+                    </h2>
 
                     <p className="mt-1 text-xs leading-relaxed text-gray-600">
                     {feature.description}

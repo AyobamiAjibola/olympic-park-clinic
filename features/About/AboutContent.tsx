@@ -19,7 +19,7 @@ export default function AboutContent() {
             <p className="text-base leading-8 text-gray-600 md:text-lg">
               Primara (Olympic Park) Medical Clinic provides compassionate,
               patient-centred family medicine for individuals and families in
-              Southwest and Northwest Calgary and surrounding communities.
+              Northwest Calgary and surrounding communities.
             </p>
 
             <p className="mt-4 text-base leading-8 text-gray-600 md:text-lg">
