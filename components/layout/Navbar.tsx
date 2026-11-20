@@ -30,7 +30,7 @@ const Navbar = () => {
         <div className="items-center gap-1 md:flex hidden flex-row">
           <MapPin color="white" size={16}/>
           <span className="text-white text-xs font-medium">
-            Proudly serving Southwest, Northwest Calgary
+            Proudly serving Southwest and Northwest Calgary
           </span>
         </div>
 

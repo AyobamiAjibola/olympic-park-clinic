@@ -235,7 +235,7 @@ export default function ChatPanel({setIsOpen, isOpen, onResetChat}: IProps) {
         const form = e.currentTarget;
         const formData = new FormData(form);
     
-        formData.append("access_key", "0712f490-bae9-4b1f-8a57-eadf90218db8");
+        formData.append("access_key", "8e9a3009-5d1a-4e82-8708-6bec1ae12da6");
         formData.append("subject", "New Contact Message");
     
         try {

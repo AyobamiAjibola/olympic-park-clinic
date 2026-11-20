@@ -40,7 +40,7 @@ const features = [
   },
   {
     icon: MapPin,
-    title: "Convenient care in Southwest Calgary",
+    title: "Convenient care in Southwest and Northwest Calgary",
     description:
       "Accessible location with free parking.",
   },
