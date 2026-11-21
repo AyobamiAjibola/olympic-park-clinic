@@ -1,5 +1,6 @@
 import { doctors } from "@/constants/helper";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 const DoctorsSection = ({limit}: {limit?: number}) => {
 
@@ -59,7 +60,15 @@ const DoctorsSection = ({limit}: {limit?: number}) => {
                     text-[#003B70]
                 "
                 >
-                {doctor.initials}
+                {doctor.image ? (
+                    <Image
+                        src={doctor.image}
+                        alt={doctor.name}
+                        width={112}
+                        height={112}
+                        className="size-full rounded-full object-cover"
+                    />
+                ) : doctor.initials}
                 </div>
 
                 <div className="flex flex-1 flex-col items-start">
