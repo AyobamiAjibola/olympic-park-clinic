@@ -60,7 +60,7 @@ export default function DoctorCard({doctors}: {doctors: DoctorType}) {
                             src={doctor.image || logo}
                             alt={doctor.name}
                             fill
-                            className="object-cover"
+                            className={doctor.image ? "object-cover object-[50%_38%]" : "object-cover"}
                         />
                     </div>
 

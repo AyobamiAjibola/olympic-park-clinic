@@ -23,7 +23,7 @@ export const doctors = [
     role: "Family Physician",
     status: "Accepting New Patients",
     qualification: "(MD, MRCGP, LMCC, CCFP)",
-    image: "",
+    image: "/dr-jacob-eze.webp",
     gender: "male",
     shortDescription:
       "Dr. Eze is committed to providing compassionate, evidence-based care for individuals and families in Northwest Calgary.",
