@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { AppProvider } from "@/providers/AppProvider";
 import { Allura } from "next/font/google";
+import Script from 'next/script'
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -92,6 +93,20 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLd),
           }}
         />
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+              'gtm.start': Date.now(),
+              event: 'gtm.js'
+            });
+
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-M3TBF5CK';
+            document.head.appendChild(script);
+          `}
+        </Script>
         <AppProvider>{children}</AppProvider>
       </body>
     </html>
